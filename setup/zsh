@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo -e "\n${BLD}${SUL}${GRN}Setting up ZSH...${RST}\n"
+
 setup_zsh() {
   backup "$HOME/.zshenv"
   create "$HOME/.local/state/zsh/"

@@ -28,7 +28,7 @@ create() {
 	dir_name="$(basename "$dir")"
 	if [[ ! -d "$dir" ]]; then
 		echo -e "Creating directory for ${BLD}${BLU}'$dir_name'${RST}..."
-		mkdir -p "$dir" && sleep 2
+		mkdir -p "$dir" && sleep 0.3
 	fi
 }
 
@@ -38,14 +38,14 @@ backup() {
 
 	if [[ -e "$file" ]] && [[ ! -e "$backup_file" ]]; then
 		echo "Backing up ${BLD}${BLU}$file${RST} to ${BLD}${CYN}$backup_file${RST}..."
-		cp -r "$file" "$backup_file" && sleep 2
+		cp -r "$file" "$backup_file" && sleep 0.3
 	fi
 }
 
 symlink() {
 	local dootsfile="$1" target_dir="$2"
-	echo -e "Symlinking ${BLD}${BLU}$dootsfile${RST} to ${BLD}${CYN}$target_dir${RST}..."
-	ln -sf "$dootsfile" "$target_dir" && sleep 2
+	echo -e "Symlinking ${BLD}${BLU}$dootsfile${RST} to ${BLD}${GRN}$target_dir${RST}..."
+	ln -sf "$dootsfile" "$target_dir" && sleep 0.3
 }
 
 setup() {
@@ -53,7 +53,7 @@ setup() {
 		echo "Fetching Dots from the source..."
 		create "$DOTS" && cd "$_" || return
 		git clone --recurse-submodules "$REPO" "$(pwd)"
-		source ./config/zsh/functions/colors.zsh && define_colors
+		source "$DOTS/config/zsh/config/colors.zsh" && define_colors
 		# backup files first
 		dirs=("$CONFIG" "$BINS" "$THEMES" "$ICONS")
 		for dir in "${dirs[@]}"; do
@@ -73,7 +73,8 @@ setup() {
 
 main() {
 	setup
-	source ./config/zsh/functions/colors.zsh && define_colors
+	source "$DOTS/config/zsh/config/colors.zsh" && define_colors
+
 	for file in ./setup/*; do
 		# shellcheck disable=all
 		source "$file"

@@ -17,32 +17,35 @@ alias \
 
 # Exa for listing
 alias \
-  ls='exa -lh --color=always --icons --git ' \
-  la='exa -alh --color=always --icons --git ' \
-  ld='exa -la --no-permissions --no-filesize --no-time --no-time --no-user'
+    ls='exa -lh --color=always --icons --git ' \
+    la='exa -alh --color=always --icons --git ' \
+    ld='exa -la --no-permissions --no-filesize --no-time --no-time --no-user'
 
 # Pacman
 alias \
-  pkgu="paru -Syu --removemake --cleanafter --sudoloop --color always" \
-  pkgi="paru --skipreview --removemake --cleanafter --sudoloop --color always --needed" \
-  pkgr="paru -R" \
-  cleanup='sudo pacman -Rns $(pacman -Qtdq)' \
-  pkglast="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -25 | nl"
+    pkgu="paru -Syu --removemake --cleanafter --sudoloop --color always" \
+    pkgi="paru --skipreview --removemake --cleanafter --sudoloop --color always --needed" \
+    pkgr="paru -R" \
+    cleanup='sudo pacman -Rns $(pacman -Qtdq)' \
+    pkglast="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -25 | nl"
 
 
 alias \
-  reload='exec $SHELL -l' \
+    reload='exec $SHELL -l' \
 
-# Query Stuff
+    # Query Stuff
 alias \
-  ip='ip -human -color -brief addr' \
-  df='df -h'
+    ip='ip -human -color -brief addr' \
+    df='df -h'
 
-## Lofi
+## Music Streams
 lofi_url="https://youtu.be/jfKfPfyJRdk"
+nintendo_url="https://youtu.be/Ns_uXoOJ7iw"
 alias \
-  lofi='celluloid "$lofi_url"& ; disown %1' \
-  lofi-bg='ts lofi -d "mpv --no-video $lofi_url"'
+    music-lofi='celluloid "$lofi_url" &>/dev/null &!' \
+    music-lofi-bg='ts lofi -d "mpv --no-video $lofi_url"' \
+    music-ninten='celluloid "$nintendo_url" &>/dev/null &!' \
+    music-ninten-bg='ts lofi -d "mpv --no-video $nintendo_url"'
 
 #--------------------------------------------------------------------#
 #                               Global                               #

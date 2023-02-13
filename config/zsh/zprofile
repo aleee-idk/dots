@@ -36,3 +36,5 @@ update_path "$PYENV_ROOT/bin"
 . "$HOME/.cargo/env"
 
 eval "$(pyenv init --path)"
+
+tmux new-session -d "default"

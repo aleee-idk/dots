@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+echo -e "\n${BLD}${SUL}${GRN}Setting up config...${RST}\n"
+
+original_pwd="$(pwd)"
+cd "$DOTS/config" || exit
+
+readarray -t configs < <(
+	fd -d 1 \
+		--exclude "*.old" \
+		--exclude "create*" \
+		--exclude "tmux"
+)
+
+for dot in "${configs[@]}"; do
+	symlink "$(pwd)/$dot" "${CONFIG}"
+done
+
+cd "$original_pwd" || exit
