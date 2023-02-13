@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+[[ ! -e "$HOME/.config" ]] && mkdir -p "$HOME/.config/"
+
+echo "Creating symlinks..."
+for var in $SCRIPT_DIR/*; do 
+	pkg=$(basename "$var")
+
+	# if exist and is not a symlink
+	if [[ -e "$HOME/.config/$pkg" && ! -h "$HOME/.config/$pkg" ]]; then
+		echo "Config for $pkg exist, creating backup ${pkg}.old"
+		mv "$HOME/.config/$pkg" "$HOME/.config/${pkg}.old"
+
+  elif [[ -e "$HOME/.config/$pkg" && -h "$HOME/.config/$pkg" ]]; then
+    unlink "$HOME/.config/$pkg"
+	fi
+  
+	ln -sf "$var" "$HOME/.config/"
+done

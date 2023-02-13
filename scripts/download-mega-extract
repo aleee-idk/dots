@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+format=$1
+shift
+path=$1
+shift
+link=$1
+shift
+
+check-dependencies megatools zenity unzip
+
+if [[ -z $link ]]; then
+	echo "A link from mega is required"
+	exit 1
+fi
+
+if [[ -z $path ]]; then
+	path="$(zenity --file-selection --directory)"
+fi
+
+if [[ -z $path ]]; then
+	path="$(zenity --file-selection --directory)"
+fi
+
+extract_zip() {
+	file_path="$path/$file"
+	unzip -q -d "$path" "$file_path"
+	rm "$file_path"
+}
+
+echo "Downloading file..."
+
+file="$(megatools dl --no-progress --print-names --path "$path" "$link")"
+
+case "$format" in
+zip)
+	extract_zip "$file"
+	;;
+*)
+	echo default
+	;;
+esac
+
+echo "Done!"

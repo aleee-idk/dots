@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+# Return 1 if any of the arguments is missing
+
+for dep in "$@"; do
+	if ! (command -v "$dep" &>/dev/null || systemctl -q list-unit-files "${dep}.service" &>/dev/null); then
+		echo -e "${dep} not found!"
+		exit 1
+	fi
+done

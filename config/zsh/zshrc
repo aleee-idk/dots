@@ -1,0 +1,115 @@
+# Start mesuring bottlenecks
+if [[ "$ZPROF" = true ]]; then
+  zmodload zsh/zprof
+fi
+
+## Stuff I don't know what they're for
+# autoload -Uz compinit
+# compinit
+
+#--------------------------------------------------------------------#
+#                             ZSH Config                             #
+#--------------------------------------------------------------------#
+
+# this should before placed before `"$ZSH/oh-my-zsh.sh"`
+# Color scheme for syntax highlighting
+source ~/.config/zsh/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-$XDG_DATA_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath+=${XDG_CONFIG_HOME:-$DOTS/config}/zsh/completions
+
+# set VIM keybindings
+bindkey -v
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.local/share/oh-my-zsh"
+
+ZSH_THEME="gozilla"
+
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Read Git repos much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# search if exist an alias for the executed command
+ZSH_ALIAS_FINDER_AUTOMATIC=true
+
+#--------------------------------------------------------------------#
+#                           Plugin Config                            #
+#--------------------------------------------------------------------#
+
+# Lazy load nvm, increasy startup time a lot.
+zstyle ':omz:plugins:nvm' lazy true
+
+# VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+# VI_MODE_SET_CURSOR=true
+
+ZSHZ_TILDE=1
+
+plugins=(
+	nvm
+  alias-finder
+  archlinux
+  bgnotify
+  colored-man-pages
+  cp # alias to use rsync to copy files
+  docker
+  docker-compose
+  fd
+  fzf
+  git
+  git-prompt
+  npm
+  ripgrep
+  rsync
+  safe-paste # don't run code when pasting
+  systemd
+  tmux
+  # vi-mode
+  yarn
+  z
+	zsh-autocomplete
+	zsh-autopair
+	zsh-autosuggestions
+	zsh-completions
+	zsh-syntax-highlighting
+  zsh-interactive-cd
+)
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+export HISTCONTROL=ignoreboth:erasedups
+
+source $ZSH/oh-my-zsh.sh
+
+#--------------------------------------------------------------------#
+#                            Start Stuff                             #
+#--------------------------------------------------------------------#
+
+# File directory that are needed to source
+files=(
+ # zsh
+ $DOTS/config/zsh/**/*.zsh
+  )
+
+for file in $files; do
+  if [[ -f $file ]]; then
+    emulate -L zsh
+    source $file
+  fi
+done
+
+
+if [[ "$ZPROF" = true ]]; then
+  zprof
+fi
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
