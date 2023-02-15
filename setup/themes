@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+echo -e "\n${BLD}${SUL}${GRN}Setting up themes...${RST}\n"
+
+original_pwd="$(pwd)"
+cd "$DOTS/themes" || exit
+
+CURRENT_DESKTOP="$(echo "$XDG_CURRENT_DESKTOP" | awk '{for (i=1;i<=NF;i++) { $i=toupper(substr($i,1,1)) tolower(substr($i,2)) }}1')"
+
+gtk() {
+	cd gtk || return
+
+	create "$THEMES"
+
+	for theme in "$PWD"/*; do
+		symlink "$theme" "${THEMES}"
+	done
+
+}
+
+case "$CURRENT_DESKTOP" in
+Gnome)
+	gtk
+	;;
+*)
+	echo "Desktop $CURRENT_DESKTOP have no setup..."
+	;;
+
+esac
+
+cd "$original_pwd" || return

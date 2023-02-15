@@ -398,13 +398,13 @@ font:
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-shell:
-  program: /bin/zsh
-  args:
-    - -l
-    - -c
-    # Open tmux session selector on startup
-    - "source ~/.config/zsh/functions/tmux.zsh && tm || echo 'Error running tmux...'"
+# shell:
+#   program: /bin/zsh
+#   args:
+# - -l
+# - -c
+# # Open tmux session selector on startup
+# - "source ~/.config/zsh/functions/tmux.zsh && tm || echo 'Error running tmux...'"
 # Startup directory
 #
 # Directory the shell is started in. If this is unset, or `None`, the working

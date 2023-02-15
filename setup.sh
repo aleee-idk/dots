@@ -9,7 +9,7 @@ REPO="https://git.panconpalta.win/aleidk/dots"
 DOTS="$HOME/Repos/Private/dots"
 CONFIG="$HOME/.config"
 BINS="$HOME/.local/bin"
-THEMES="$HOME/.local/share/themes"
+THEMES="$HOME/.themes"
 ICONS="$HOME/.local/share/icons"
 
 dependencies=(chsh curl git jq nvim tar wget zsh)
