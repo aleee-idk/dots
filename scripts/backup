@@ -8,7 +8,7 @@ check-dependencies megatools rclone rsync fd
 source "$DOTS/config/zsh/config/colors.zsh" && define_colors
 
 LOCAL_BACKUP_PATH="$HOME/Drives/Backups/auto-backups/"
-REMOTE_BACKUP_PATH="auto-backups/"
+REMOTE_BACKUP_PATH="auto-backups"
 RCLONE_CLOUD_NAME="mega"
 
 DATE_FORMAT="+%F"
@@ -16,7 +16,7 @@ DATE_FORMAT="+%F"
 # sources can be any rsync accepted path
 SOURCES=(
 	"$HOME/Drives/Stuff/Pictures/"
-	# "$HOME/Drives/Stuff/Music"
+	"$HOME/Drives/Stuff/Music/"
 )
 
 MAX_BACKUPS=10
