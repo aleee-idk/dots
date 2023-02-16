@@ -1,0 +1,149 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+shopt -s nullglob
+
+check-dependencies megatools rclone rsync fd
+
+source "$DOTS/config/zsh/config/colors.zsh" && define_colors
+
+LOCAL_BACKUP_PATH="$HOME/Drives/Backups/auto-backups/"
+REMOTE_BACKUP_PATH="auto-backups/"
+RCLONE_CLOUD_NAME="mega"
+
+DATE_FORMAT="+%F"
+
+# sources can be any rsync accepted path
+SOURCES=(
+	"$HOME/Drives/Stuff/Pictures/"
+	# "$HOME/Drives/Stuff/Music"
+)
+
+MAX_BACKUPS=10
+
+ensure_path_exist() {
+	path="$1"
+	shift
+
+	if [[ ! -d "$path" ]]; then
+		echo -e "Path ${RED}$path${RST} doesn't exist, ${GRN}creating...${RST}"
+		mkdir -p "$path"
+	fi
+}
+
+backup() {
+	src="$1"
+	shift
+	dst="$LOCAL_BACKUP_PATH"
+
+	name="$(basename "$src")"
+	dst="${dst}${name}"
+	date=$(date "$DATE_FORMAT")
+
+	# Config
+	SNAP="${dst}/${date}"
+	LAST="${dst}/last"
+	PARTIAL="${dst}/.partial_${date}"
+
+	# Check partial backups (failed)
+
+	if [[ -d "$SNAP" && ! -d "$PARTIAL" ]]; then
+		echo -e "${MGN}${DIM}Backup for $date already crated, skiping...${RST}"
+		return
+	else
+		echo -e "Backing up ${BLU}$dst${RST}"
+	fi
+
+	# shellcheck disable=2086
+	rsync \
+		--super \
+		--compress \
+		--mkpath \
+		--archive \
+		--human-readable \
+		--delete \
+		--filter='dir-merge /.sync-exclude' \
+		--exclude="**/.sync-exclude" \
+		--partial \
+		--partial-dir="$PARTIAL" \
+		--info=none,progress2 \
+		--link-dest="$LAST" \
+		"$src" "$SNAP"
+
+	# Update symlink to last backup
+	rm -f "$LAST"
+	ln -s "$SNAP" "$LAST"
+
+	# clean failed backups
+	for dir in $dst/.partial_*; do
+		date="$(echo "$dir" | cut -d "_" -f 2)"
+		rm -r "$dir" "${dst}/${date}"
+	done
+	echo -e ""
+}
+
+delete_old() {
+	src="$1"
+	shift
+	dst="$LOCAL_BACKUP_PATH"
+
+	name="$(basename "$src")"
+	dst="${dst}${name}"
+
+	bkp_count="$(fd -t d --exact-depth 1 . "$dst" | wc -l)"
+
+	while [[ $bkp_count -gt $MAX_BACKUPS ]]; do
+		oldest_dir="$(fd -t d --exact-depth 1 . "$dst" | sort | head -n 1)"
+
+		echo -e "Max backups exceed for ${BLU}$name${RST}, deleting ${RED}$(basename "$oldest_dir")${RST}..."
+
+		rm -rf "$oldest_dir"
+
+		bkp_count="$(fd -t d --exact-depth 1 . "${dst}" | wc -l)"
+	done
+
+	echo ""
+}
+
+sync() {
+	config="$(rclone config dump 2>/dev/null | jq '."$RCLONE_CLOUD_NAME"  // empty')"}
+
+	if [[ -z "$config" ]]; then
+		echo -e "${RED}${SHL}No Rclone configuration! skiping sync.${RST}${EHL}\n"
+		return
+	fi
+
+	for dir in $LOCAL_BACKUP_PATH/*; do
+		remote_path="${RCLONE_CLOUD_NAME}:${REMOTE_BACKUP_PATH}/${name}"
+		newest="$(fd -t d --exact-depth 1 . "$dir" | sort -r | head -n 1)"
+		name="$(basename "$dir")"
+		today=$(date "$DATE_FORMAT")
+
+		if [[ "$today" == "$(rclone cat "${remote_path}/.last-sync" 2>/dev/null)" ]]; then
+			echo -e "${MGN}${DIM}Last sync for this backup was today, skiping...${RST}"
+			return
+		else
+			echo -e "Syncthing latest backup for ${BLU}$name${RST} in ${RED}$remote_path${RST}"
+		fi
+
+		rclone sync \
+			--copy-links \
+			--progress \
+			--stats-one-line \
+			"$newest" "$remote_path"
+
+		echo "$today" | rclone rcat "${remote_path}/.last-sync"
+	done
+
+	echo ""
+}
+
+ensure_path_exist "$LOCAL_BACKUP_PATH"
+
+for path in "${SOURCES[@]}"; do
+	backup "$path"
+	delete_old "$path"
+	sync
+done
+
+echo -e "${GRN}Backups done!${RST}"
