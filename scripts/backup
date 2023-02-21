@@ -3,8 +3,6 @@
 set -Eeuo pipefail
 shopt -s nullglob
 
-check-dependencies megatools rclone rsync fd
-
 source "$DOTS/config/zsh/config/colors.zsh" && define_colors
 
 LOCAL_BACKUP_PATH="$HOME/Drives/Backups/auto-backups/"
@@ -17,6 +15,7 @@ DATE_FORMAT="+%F"
 SOURCES=(
 	"$HOME/Drives/Stuff/Pictures/"
 	"$HOME/Drives/Stuff/Music/"
+	"root@berry.net:/home/aleidk/services/"
 )
 
 MAX_BACKUPS=10
@@ -56,7 +55,7 @@ backup() {
 
 	# shellcheck disable=2086
 	rsync \
-		--super \
+		--fake-super \
 		--compress \
 		--mkpath \
 		--archive \
@@ -77,7 +76,7 @@ backup() {
 	# clean failed backups
 	for dir in $dst/.partial_*; do
 		date="$(echo "$dir" | cut -d "_" -f 2)"
-		rm -r "$dir" "${dst}/${date}"
+		rm -r "$dir" "${dst:?}/${date}"
 	done
 	echo -e ""
 }
@@ -106,7 +105,7 @@ delete_old() {
 }
 
 sync() {
-	config="$(rclone config dump 2>/dev/null | jq '."$RCLONE_CLOUD_NAME"  // empty')"}
+	config="$(rclone config dump 2>/dev/null | jq ".$RCLONE_CLOUD_NAME  // empty")"
 
 	if [[ -z "$config" ]]; then
 		echo -e "${RED}${SHL}No Rclone configuration! skiping sync.${RST}${EHL}\n"
@@ -114,14 +113,14 @@ sync() {
 	fi
 
 	for dir in $LOCAL_BACKUP_PATH/*; do
+		name="$(basename "$dir")"
 		remote_path="${RCLONE_CLOUD_NAME}:${REMOTE_BACKUP_PATH}/${name}"
 		newest="$(fd -t d --exact-depth 1 . "$dir" | sort -r | head -n 1)"
-		name="$(basename "$dir")"
 		today=$(date "$DATE_FORMAT")
 
 		if [[ "$today" == "$(rclone cat "${remote_path}/.last-sync" 2>/dev/null)" ]]; then
-			echo -e "${MGN}${DIM}Last sync for this backup was today, skiping...${RST}"
-			return
+			echo -e "${MGN}${DIM}Last sync ${BLU}for${RST} $name was today, skiping...${RST}"
+			continue
 		else
 			echo -e "Syncthing latest backup for ${BLU}$name${RST} in ${RED}$remote_path${RST}"
 		fi
@@ -143,7 +142,8 @@ ensure_path_exist "$LOCAL_BACKUP_PATH"
 for path in "${SOURCES[@]}"; do
 	backup "$path"
 	delete_old "$path"
-	sync
 done
+
+sync
 
 echo -e "${GRN}Backups done!${RST}"

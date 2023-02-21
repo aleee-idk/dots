@@ -44,6 +44,15 @@ backup() {
 
 symlink() {
 	local dootsfile="$1" target_dir="$2"
+
+	final_path="$target_dir/$(basename "$dootsfile")"
+	backup_file=$final_path.dots
+
+	if [[ -e "$final_path" ]] && [[ ! -L "$final_path" ]] && [[ ! -e "$backup_file" ]]; then
+		echo "Backing up ${BLD}${BLU}$target_dir${RST} to ${BLD}${CYN}$backup_file${RST}..."
+		mv "$final_path" "$backup_file" && sleep 0.3
+	fi
+
 	echo -e "Symlinking ${BLD}${BLU}$dootsfile${RST} to ${BLD}${GRN}$target_dir${RST}..."
 	ln -sf "$dootsfile" "$target_dir" && sleep 0.3
 }

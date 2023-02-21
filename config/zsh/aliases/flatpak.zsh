@@ -1,0 +1,22 @@
+
+# Auto-generated aliases for Flatpak applications
+
+alias junction='flatpak run re.sonny.Junction'
+alias slack='flatpak run com.slack.Slack'
+alias flatseal='flatpak run com.github.tchx84.Flatseal'
+alias kid3='flatpak run org.kde.kid3'
+alias client='flatpak run com.spotify.Client'
+alias gdmsettings='flatpak run io.github.realmazharhussain.GdmSettings'
+alias studio='flatpak run io.beekeeperstudio.Studio'
+alias librewolf-community='flatpak run io.gitlab.librewolf-community'
+alias czkawka='flatpak run com.github.qarmin.czkawka'
+alias detwinner='flatpak run com.neatdecisions.Detwinner'
+alias syncthingtk='flatpak run me.kozec.syncthingtk'
+alias jellyfin-media-player='flatpak run com.github.iwalton3.jellyfin-media-player'
+alias guiscrcpy='flatpak run in.srev.guiscrcpy'
+alias browser='flatpak run com.brave.Browser'
+alias amberol='flatpak run io.bassi.Amberol'
+alias signal='flatpak run org.signal.Signal'
+alias pikabackup='flatpak run org.gnome.World.PikaBackup'
+alias megasync='flatpak run nz.mega.MEGAsync'
+alias celeste='flatpak run com.hunterwittenborn.Celeste'

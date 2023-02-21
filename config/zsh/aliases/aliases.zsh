@@ -15,6 +15,10 @@ alias \
     rm='rm -iv' \
     md='mkdir -pv';
 
+# short long and common commands
+alias \
+    mkexec='chmod +x';
+
 # Exa for listing
 alias \
     ls='exa -lh --color=always --icons --git ' \

@@ -1,6 +1,6 @@
 # Start mesuring bottlenecks
 if [[ "$ZPROF" = true ]]; then
-  zmodload zsh/zprof
+    zmodload zsh/zprof
 fi
 
 ## Stuff I don't know what they're for
@@ -53,39 +53,44 @@ zstyle ':omz:plugins:nvm' lazy true
 ZSHZ_TILDE=1
 
 plugins=(
-	nvm
-  alias-finder
-  archlinux
-  bgnotify
-  colored-man-pages
-  cp # alias to use rsync to copy files
-  docker
-  docker-compose
-  fd
-  fzf
-  git
-  git-prompt
-  npm
-  ripgrep
-  rsync
-  safe-paste # don't run code when pasting
-  systemd
-  tmux
-  # vi-mode
-  yarn
-  z
-	zsh-autocomplete
-	zsh-autopair
-	zsh-autosuggestions
-	zsh-completions
-	zsh-syntax-highlighting
-  zsh-interactive-cd
+    nvm
+    alias-finder
+    # archlinux
+    bgnotify
+    colored-man-pages
+    cp # alias to use rsync to copy files
+    docker
+    docker-compose
+    fd
+    fzf
+    git
+    git-prompt
+    npm
+    ripgrep
+    rsync
+    safe-paste # don't run code when pasting
+    systemd
+    # tmux
+    # vi-mode
+    yarn
+    z
+    zsh-autocomplete
+    zsh-autopair
+    zsh-autosuggestions
+    zsh-completions
+    zsh-syntax-highlighting
+    zsh-interactive-cd
 )
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 export HISTCONTROL=ignoreboth:erasedups
+
+# autocomplete: https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:*' widget-style menu-select # Tab select instead of autocomplete
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,20 +100,22 @@ source $ZSH/oh-my-zsh.sh
 
 # File directory that are needed to source
 files=(
- # zsh
- $DOTS/config/zsh/**/*.zsh
-  )
+    # zsh
+    $DOTS/config/zsh/**/*.zsh
+    # fzf scripts that need to be sourced
+    $DOTS/scripts/fzf-flatpak
+)
 
 for file in $files; do
-  if [[ -f $file ]]; then
-    emulate -L zsh
-    source $file
-  fi
+    if [[ -f $file ]]; then
+        emulate -L zsh
+        source $file
+    fi
 done
 
 
 if [[ "$ZPROF" = true ]]; then
-  zprof
+    zprof
 fi
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

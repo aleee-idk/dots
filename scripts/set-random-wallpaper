@@ -8,8 +8,40 @@ WALLPAPER_PREFIX="Fondos_PC.*"
 RANDOM_PICTURE=$(fd -apt f "$WALLPAPER_PREFIX" "$WALLPAPER_DIR" | shuf -n 1)
 CURRENT_DESKTOP="$(echo "$XDG_CURRENT_DESKTOP" | awk '{for (i=1;i<=NF;i++) { $i=toupper(substr($i,1,1)) tolower(substr($i,2)) }}1')"
 
+# Extra actions
+declare -A CONFIG
+CONFIG["delete_current"]=false
+
+show_help() {
+	echo -e "${BLD}Usage: ${GRN}set-random-wallpaper${RST}${YLW} [OPTION]${RST}"
+	echo -e ""
+	echo -e "${BLD}  Options:${RST}"
+	echo -e "${YLW}    -d, delete      ${RST}delete current wallpaper"
+	echo -e "${YLW}    -h, --help      ${RST}Show this help"
+}
+
+case "$1" in
+delete | -d)
+	CONFIG["delete_current"]=true
+	;;
+help | -h)
+	show_help
+	;;
+*) ;;
+esac
+
+shift
+
 case "$CURRENT_DESKTOP" in
 Gnome)
+
+	if [[ "${CONFIG[delete_current]}" == true ]]; then
+		file_path="$(gsettings get org.gnome.desktop.background picture-uri)"
+		file_path="${file_path:8:-1}"
+
+		rm -iv "$file_path"
+	fi
+
 	gsettings set org.gnome.desktop.background picture-uri "file://$RANDOM_PICTURE"
 	gsettings set org.gnome.desktop.background picture-uri-dark "file://$RANDOM_PICTURE"
 	;;
@@ -32,7 +64,7 @@ KDE)
             d.currentConfigGroup = Array("Wallpaper","org.kde.image","General");
             d.writeConfig("Image", "file:///'$RANDOM_PICTURE'")
         }}
-    '
+        '
 	;;
 Sway)
 	MODES=(

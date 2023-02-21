@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 update_path() {
-  export PATH="$PATH:$1"
+    export PATH="$PATH:$1"
 }
 
 # Set manually
@@ -27,7 +27,7 @@ update_path "/usr/local/bin"
 update_path "$HOME/.local/bin"
 update_path "$HOME/.cargo/bin/"
 update_path "$HOME/.spicetify"
-update_path "$HOME/Repos/Private/scripts"
+update_path "$DOTS/scripts"
 update_path "$HOME/bin"
 update_path "$NPM_PACKAGES/bin"
 update_path "$PNPM_HOME"
