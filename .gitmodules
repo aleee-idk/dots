@@ -1,3 +1,9 @@
 [submodule "config/nvim"]
 	path = config/nvim
 	url = https://github.com/AstroNvim/AstroNvim
+[submodule "config/alacritty/themes/catppuccin"]
+	path = config/alacritty/themes/catppuccin
+	url = https://github.com/catppuccin/alacritty.git
+[submodule "config/foot/themes/catppuccin"]
+	path = config/foot/themes/catppuccin
+	url = https://github.com/catppuccin/foot.git
