@@ -5,3 +5,5 @@ echo -e "\n${BLD}${SUL}${GRN}Setting up ${RED}Rust${GRN}...${RST}\n"
 if ! command -v cargo >/dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
+
+cargo install tree-sitter-cli
