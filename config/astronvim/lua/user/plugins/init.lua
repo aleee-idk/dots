@@ -1,7 +1,7 @@
 return {
-	["/nvim-neo-tree/neo-tree.nvim"] = { disable = true },
+	-- ["/nvim-neo-tree/neo-tree.nvim"] = { disable = true },
 	["rcarriga/nvim-notify"] = { disable = true },
-
+	--
 	["catppuccin/nvim"] = {
 		as = "catppuccin",
 		config = function()
@@ -13,26 +13,22 @@ return {
 			require("treesitter-context").setup()
 		end,
 	},
-
 	["ahmedkhalf/project.nvim"] = {
 		config = function()
 			require("user.plugins.project")
 		end,
 	},
-
-	["kyazdani42/nvim-tree.lua"] = {
-		config = function()
-			require("user.plugins.nvim-tree")
-		end,
-	},
-
+	-- ["kyazdani42/nvim-tree.lua"] = {
+	-- 	config = function()
+	-- 		require("user.plugins.nvim-tree")
+	-- 	end,
+	-- },
 	["kylechui/nvim-surround"] = {
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
 		config = function()
 			require("nvim-surround").setup()
 		end,
 	},
-
 	["s1n7ax/nvim-comment-frame"] = {
 		requires = {
 			{ "nvim-treesitter" },
@@ -50,14 +46,12 @@ return {
 		requires = "nvim-treesitter/nvim-treesitter",
 		tag = "*", -- stable releases
 	},
-
 	["folke/todo-comments.nvim"] = {
 		requires = "nvim-lua/plenary.nvim",
 		config = function()
 			require("todo-comments").setup({})
 		end,
 	},
-
 	["folke/trouble.nvim"] = {
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
@@ -77,10 +71,22 @@ return {
 			})
 		end,
 	},
-
 	["ThePrimeagen/harpoon"] = {
 		config = function()
 			require("user.plugins.harpoon")
+		end,
+	},
+	["ckolkey/ts-node-action"] = {
+		requires = { "nvim-treesitter" },
+		config = function()
+			require("user.plugins.ts-node-action")
+		end,
+	},
+	["phaazon/mind.nvim"] = {
+		branch = "v2",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("user.plugins.mind")
 		end,
 	},
 }

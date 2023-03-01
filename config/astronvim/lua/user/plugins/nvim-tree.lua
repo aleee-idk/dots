@@ -29,17 +29,42 @@ tree.setup({
 			list = {
 				{ key = { "l", "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
 				-- {key = {"L", "<2-RightMouse>", "<C-]>"}, action = "cd"},
-				{ key = "s", action = "vsplit" },
-				{ key = "v", action = "split" },
-				{ key = "t", action = "tabnew" },
-				{ key = { "h", "<BS>" }, action = "close_node" },
-				{ key = "i", action = "toggle_dotfiles" },
-				{ key = "I", action = "toggle_ignored" },
-				{ key = { "<C-l>", "<C-CR>" }, cb = tree_cb("system_open") },
+				{ key = "s",                                   action = "vsplit" },
+				{ key = "v",                                   action = "split" },
+				{ key = "t",                                   action = "tabnew" },
+				{ key = { "h", "<BS>" },                       action = "close_node" },
+				{ key = "i",                                   action = "toggle_dotfiles" },
+				{ key = "I",                                   action = "toggle_ignored" },
+				{ key = { "<C-l>", "<C-CR>" },                 cb = tree_cb("system_open") },
 			},
 		},
 	},
 })
+
+-- Auto open when a dir is opened
+
+local function open_nvim_tree(data)
+	-- buffer is a directory
+	local directory = vim.fn.isdirectory(data.file) == 1
+
+	if not directory then
+		return
+	end
+
+	-- create a new, empty buffer
+	vim.cmd.enew()
+
+	-- wipe the directory buffer
+	vim.cmd.bw(data.buf)
+
+	-- change to the directory
+	vim.cmd.cd(data.file)
+
+	-- open the tree
+	require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- bindings
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })

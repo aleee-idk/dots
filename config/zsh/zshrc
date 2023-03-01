@@ -104,6 +104,8 @@ files=(
     $DOTS/config/zsh/**/*.zsh
     # fzf scripts that need to be sourced
     $DOTS/scripts/fzf-flatpak
+    # fzf config file
+    $DOOTS/config/fzf/fzfrc
 )
 
 for file in $files; do
