@@ -1,0 +1,6 @@
+# Package manager locks
+*.lock
+
+# PHP Stuff
+vendor
+.php-cs-fixer.cache

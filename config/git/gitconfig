@@ -1,0 +1,7 @@
+[user]
+	email = ale.navarro.parra@gmail.com
+	user = Alexander Navarro
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

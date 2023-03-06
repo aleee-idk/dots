@@ -1,5 +1,5 @@
 return {
-	-- ["/nvim-neo-tree/neo-tree.nvim"] = { disable = true },
+	["/nvim-neo-tree/neo-tree.nvim"] = { disable = true },
 	["rcarriga/nvim-notify"] = { disable = true },
 	--
 	["catppuccin/nvim"] = {
@@ -18,11 +18,11 @@ return {
 			require("user.plugins.project")
 		end,
 	},
-	-- ["kyazdani42/nvim-tree.lua"] = {
-	-- 	config = function()
-	-- 		require("user.plugins.nvim-tree")
-	-- 	end,
-	-- },
+	["kyazdani42/nvim-tree.lua"] = {
+		config = function()
+			require("user.plugins.nvim-tree")
+		end,
+	},
 	["kylechui/nvim-surround"] = {
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
 		config = function()
