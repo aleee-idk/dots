@@ -1,5 +1,6 @@
 # Package manager locks
 *.lock
+pnpm-lock.yaml
 
 # PHP Stuff
 vendor

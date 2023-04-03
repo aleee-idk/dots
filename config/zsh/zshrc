@@ -65,7 +65,6 @@ plugins=(
     fzf
     git
     git-prompt
-    npm
     ripgrep
     rsync
     safe-paste # don't run code when pasting

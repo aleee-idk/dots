@@ -1,23 +1,23 @@
 omz_install_custom() {
-  set -e
-  local type=$1
-  local omz_dir="${ZSH:-$HOME/.local/share/oh-my-zsh}"
-  local custom_dir="${ZSH_CUSTOM:-$omz_dir/custom}/${type}s"
-  local repos=("${@:2}")
+    set -e
+    local type=$1
+    local omz_dir="${ZSH:-$HOME/.local/share/oh-my-zsh}"
+    local custom_dir="${ZSH_CUSTOM:-$omz_dir/custom}/${type}s"
+    local repos=("${@:2}")
 
-  if [[ ! -d "$omz_dir" ]]; then
-    echo "${BLU}Installing ${BLD}[Oh My Zsh]${RST} ..."
-    git clone https://github.com/ohmyzsh/ohmyzsh.git $omz_dir
-  fi
-
-  for repo in "${repos[@]}"; do
-    local name=${repo##*/}
-    local dir="$custom_dir/$name"
-    if [[ ! -d "$dir" ]]; then
-      echo "${GRN}Installing ${BLD}${YLW}$name${RST} ${BLU}${type}...${RST}"
-      git clone --depth=1 "https://github.com/$repo" "$dir"
+    if [[ ! -d "$omz_dir" ]]; then
+        echo "${BLU}Installing ${BLD}[Oh My Zsh]${RST} ..."
+        git clone https://github.com/ohmyzsh/ohmyzsh.git $omz_dir
     fi
-  done
+
+    for repo in "${repos[@]}"; do
+        local name=${repo##*/}
+        local dir="$custom_dir/$name"
+        if [[ ! -d "$dir" ]]; then
+            echo "${GRN}Installing ${BLD}${YLW}$name${RST} ${BLU}${type}...${RST}"
+            git clone --depth=1 "https://github.com/$repo" "$dir"
+        fi
+    done
 }
 
 # Usage install_omz_cutom <type> <reponame>
