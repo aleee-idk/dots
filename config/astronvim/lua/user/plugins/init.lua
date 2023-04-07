@@ -13,11 +13,6 @@ return {
 			require("treesitter-context").setup()
 		end,
 	},
-	["ahmedkhalf/project.nvim"] = {
-		config = function()
-			require("user.plugins.project")
-		end,
-	},
 	["kyazdani42/nvim-tree.lua"] = {
 		config = function()
 			require("user.plugins.nvim-tree")
@@ -80,13 +75,6 @@ return {
 		requires = { "nvim-treesitter" },
 		config = function()
 			require("user.plugins.ts-node-action")
-		end,
-	},
-	["phaazon/mind.nvim"] = {
-		branch = "v2",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("user.plugins.mind")
 		end,
 	},
 }
