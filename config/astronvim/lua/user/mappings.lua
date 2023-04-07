@@ -51,6 +51,18 @@ return {
 			end,
 			desc = "Debugger: Toggle Breakpoint",
 		},
+		["<leader>DB"] = {
+			function()
+				require("dap").toggle_breakpoint(vim.fn.input("Breakpoint condition: "))
+			end,
+			desc = "Debugger: Toggle Breakpoint with contidion",
+		},
+		["<leader>DD"] = {
+			function()
+				require("dap").clear_breakpoints()
+			end,
+			desc = "Debugger: clear breakpoint",
+		},
 
 		["<leader>fp"] = {
 			function()
