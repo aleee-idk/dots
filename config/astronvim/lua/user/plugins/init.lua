@@ -1,80 +1,39 @@
 return {
-	["/nvim-neo-tree/neo-tree.nvim"] = { disable = true },
-	["rcarriga/nvim-notify"] = { disable = true },
+	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
+	{ "rcarriga/nvim-notify",        enabled = false },
 	--
-	["catppuccin/nvim"] = {
-		as = "catppuccin",
-		config = function()
-			require("user.plugins.catppuccin")
-		end,
+	{
+		"nvim-treesitter/nvim-treesitter-context",
 	},
-	["nvim-treesitter/nvim-treesitter-context"] = {
-		config = function()
-			require("treesitter-context").setup()
-		end,
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 	},
-	["kyazdani42/nvim-tree.lua"] = {
-		config = function()
-			require("user.plugins.nvim-tree")
-		end,
-	},
-	["kylechui/nvim-surround"] = {
-		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-		config = function()
-			require("nvim-surround").setup()
-		end,
-	},
-	["s1n7ax/nvim-comment-frame"] = {
-		requires = {
-			{ "nvim-treesitter" },
+	{
+		"s1n7ax/nvim-comment-frame",
+		dependencies = { "nvim-treesitter" },
+		config = {
+			disable_default_keymap = true,
 		},
-		config = function()
-			require("nvim-comment-frame").setup({
-				disable_default_keymap = true,
-			})
-		end,
 	},
-	["danymat/neogen"] = {
-		config = function()
-			require("neogen").setup({ snippet_engine = "luasnip" })
-		end,
-		requires = "nvim-treesitter/nvim-treesitter",
-		tag = "*", -- stable releases
+	{
+		"danymat/neogen",
+		config = { snippet_engine = "luasnip" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		version = "*", -- stable releases
 	},
-	["folke/todo-comments.nvim"] = {
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	["folke/trouble.nvim"] = {
-		requires = "kyazdani42/nvim-web-devicons",
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = { "mason-lspconfig.nvim" }, -- make sure to load after mason-lspconfig
 		config = function()
-			require("user.plugins.trouble")
-		end,
-	},
-	["anuvyklack/pretty-fold.nvim"] = {
-		config = function()
-			require("user.plugins.pretty-fold")
-		end,
-	},
-	["simrat39/rust-tools.nvim"] = {
-		after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
-		config = function()
+			local lsp = require("astronvim.utils.lsp")
 			require("rust-tools").setup({
-				server = astronvim.lsp.server_settings("rust_analyzer"), -- get the server settings and built in capabilities/on_attach
+				server = lsp.config("rust_analyzer"), -- get the server settings and built in capabilities/on_attach
 			})
-		end,
-	},
-	["ThePrimeagen/harpoon"] = {
-		config = function()
-			require("user.plugins.harpoon")
-		end,
-	},
-	["ckolkey/ts-node-action"] = {
-		requires = { "nvim-treesitter" },
-		config = function()
-			require("user.plugins.ts-node-action")
 		end,
 	},
 }

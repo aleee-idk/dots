@@ -1,15 +1,16 @@
-local telescope_actions = require("telescope.actions")
-
 return {
-	defaults = {
-		mappings = {
+	"nvim-telescope/telescope.nvim",
+	config = function(plugin, opts)
+		local actions = require("telescope.actions")
+		opts.defaults.mappings = {
 			i = {
-				["<C-j>"] = telescope_actions.move_selection_next,
-				["<C-k>"] = telescope_actions.move_selection_previous,
-				["<C-s>"] = telescope_actions.file_vsplit,
-				["<C-v>"] = telescope_actions.file_split,
-				["<ESC>"] = telescope_actions.close,
+				["<C-j>"] = actions.move_selection_next,
+				["<C-k>"] = actions.move_selection_previous,
+				["<C-s>"] = actions.file_vsplit,
+				["<C-v>"] = actions.file_split,
+				["<ESC>"] = actions.close,
 			},
-		},
-	},
+		}
+		require("plugins.configs.telescope")(plugin, opts)
+	end,
 }
