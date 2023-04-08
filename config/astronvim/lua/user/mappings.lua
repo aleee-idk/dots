@@ -12,12 +12,12 @@ return {
 		["n"] = { "nzzzv", desc = "Keep cursor centered while searching" },
 		["N"] = { "Nzzzv", desc = "Keep cursor centered while searching" },
 
-		["q"] = "<nop>",
+		["Q"] = "<nop>",
 
 		-- Buffers
 		["H"] = {
 			function()
-				require("astronvim.utils.buffer").nav( -(vim.v.count > 0 and vim.v.count or 1))
+				require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
 			end,
 			desc = "Previous buffer",
 		},
