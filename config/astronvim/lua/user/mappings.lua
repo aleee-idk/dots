@@ -1,9 +1,21 @@
 return {
 	n = {
+		--Usefull vanilla remaps
+
+		["J"] = { "mzJ`z", desc = "Keep cursor in column while joining lines" },
+
+		--
+		["<C-d>"] = { "<C-d>zz", desc = "Keep cursor centered while junping" },
+		["<C-u>"] = { "<C-u>zz", desc = "Keep cursor centered while junping" },
+
+		-- Keep cursor centered while searching
+		["n"] = { "nzzzv", desc = "Keep cursor centered while searching" },
+		["N"] = { "Nzzzv", desc = "Keep cursor centered while searching" },
+
+		["q"] = "<nop>",
 
 		-- Buffers
 		["H"] = {
-
 			function()
 				require("astronvim.utils.buffer").nav( -(vim.v.count > 0 and vim.v.count or 1))
 			end,
@@ -126,8 +138,8 @@ return {
 		},
 
 		["<leader>r"] = {
-			":s/",
-			desc = "Search and replace",
+			[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+			desc = "Search and replace current word",
 		},
 		["<leader>R"] = {
 			":%s/",
@@ -141,9 +153,13 @@ return {
 		},
 
 		["p"] = {
-			"pgvy",
-			desc = "Paste and re yank text",
+			[["_dP]],
+			desc = "Paste whitout lossing yanked text",
 		},
+
+		-- move selection up and down
+		["J"] = ":m '>+1<CR>gv=gv",
+		["K"] = ":m '<-2<CR>gv=gv",
 	},
 	t = {
 		["<C-t>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
