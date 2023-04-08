@@ -8,7 +8,6 @@ return {
 			"fixjson",
 			"gitlint",
 			"intelephense",
-			"luacheck",
 			"markdownlint",
 			"php-cs-fixer",
 			"prettierd",
