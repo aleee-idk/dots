@@ -1,0 +1,14 @@
+dnf-plugin-system-upgrade
+exa
+fd-find
+flatpak
+fzf
+gcc
+gcc-c++
+git
+gnome-software
+neovim
+nodejs
+remove-retired-packages
+tmux
+zsh
