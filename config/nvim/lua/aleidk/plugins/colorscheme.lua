@@ -1,30 +1,32 @@
-local colorscheme = "rose-pine"
+local colorscheme = "onedark"
+
 return {
-	"rose-pine/neovim",
-	name = colorscheme,
+	"olimorris/onedarkpro.nvim",
 	priority = 1000,
-	config = function(_, opts)
-		require(colorscheme).setup(opts)
-		vim.cmd.colorscheme(colorscheme)
-	end,
 	opts = {
-		--- @usage 'auto'|'main'|'moon'|'dawn'
-		variant = "moon",
-		--- @usage 'main'|'moon'|'dawn'
-		dark_variant = "moon",
-		--- @usage string hex value or named color from rosepinetheme.com/palette
-		groups = {
-			background = "none",
+		options = {
+			transparency = true, -- Use a transparentbackground?
 		},
-		-- Change specific vim highlight groups
-		-- https://github.com/rose-pine/neovim/wiki/Recipes
-		highlight_groups = {
-			TelescopeBorder = { fg = "highlight_high", bg = "none" },
-			TelescopeNormal = { bg = "none" },
-			TelescopePromptNormal = { bg = "base" },
-			TelescopeResultsNormal = { fg = "subtle", bg = "none" },
-			TelescopeSelection = { fg = "text", bg = "base" },
-			TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+		colors = {
+			bg = "#000000",
+			fg = "#abb2bf",
+			red = "#ef596f",
+			orange = "#fab387",
+			yellow = "#e5c07b",
+			green = "#89ca78",
+			cyan = "#2bbac5",
+			blue = "#61afef",
+			purple = "#d55fde",
+			white = "#abb2bf",
+			black = "#000000",
+			gray = "#434852",
+			highlight = "#e2be7d",
+			comment = "#7f848e",
+			none = "NONE",
 		},
 	},
+	config = function(_, opts)
+		require("onedarkpro").setup(opts)
+		vim.cmd.colorscheme(colorscheme)
+	end,
 }
