@@ -105,3 +105,13 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
+
+cmd mega-extract ${{
+    printf " Enter compresion type: "
+    read compression 
+
+    printf " Enter link: "
+    read link 
+
+    download-mega-extract "$compression" "$PWD" "$link"
+}}
