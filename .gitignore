@@ -8,3 +8,4 @@ config/mpv/shaders
 
 # locks
 **/*-lock.json
+config/spicetify/Backup
