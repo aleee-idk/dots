@@ -18,10 +18,10 @@ return {
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim", opts = {} },
+			{ "j-hui/fidget.nvim",       opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
-			{ "folke/neodev.nvim", opts = {} },
+			{ "folke/neodev.nvim",       opts = {} },
 		},
 	},
 
@@ -48,4 +48,18 @@ return {
 
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
+
+	{
+		"famiu/bufdelete.nvim",
+		config = nil,
+		keys = {
+			{
+				"<leader>c",
+				function()
+					require("bufdelete").bufdelete(0, true)
+				end,
+				desc = "Close buffer",
+			},
+		},
+	},
 }

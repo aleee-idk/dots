@@ -10,5 +10,8 @@ gnome-software
 neovim
 nodejs
 remove-retired-packages
+ripgrep
+tealdeer
 tmux
+tree-sitter-cli
 zsh

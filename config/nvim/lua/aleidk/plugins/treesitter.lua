@@ -3,15 +3,17 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		"windwp/nvim-ts-autotag",
+		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	build = ":TSUpdate",
 	opts = {
 		-- Add languages to be installed here that you want installed for treesitter
 		ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "tsx", "typescript", "vimdoc", "vim" },
 		-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-		auto_install = false,
+		auto_install = true,
 		highlight = { enable = true },
-		indent = { enable = true, disable = { "python" } },
+		indent = { enable = true },
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -65,5 +67,15 @@ return {
 				},
 			},
 		},
+		autotag = { enable = true },
+		context_commentstring = { enable = true, enable_autocmd = false },
 	},
+	config = function(_, opts)
+		require("nvim-treesitter.configs").setup(opts)
+		vim.cmd([[
+			set foldmethod=expr
+			set foldexpr=nvim_treesitter#foldexpr()
+			set nofoldenable
+		]])
+	end,
 }
