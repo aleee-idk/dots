@@ -8,7 +8,6 @@ return {
 	lazy = false,
 	config = function()
 		local tree = require("nvim-tree")
-		local tree_cb = require("nvim-tree.config").nvim_tree_callback
 		local api = require("nvim-tree.api")
 
 		tree.setup({
@@ -32,7 +31,7 @@ return {
 			},
 			view = {
 				centralize_selection = true, -- center current file on enter
-				width = 30, -- N° of columns or %
+				width = 30,              -- N° of columns or %
 			},
 			on_attach = function(bufnr)
 				local function opts(desc)
