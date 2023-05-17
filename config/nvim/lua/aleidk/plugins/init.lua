@@ -18,10 +18,10 @@ return {
 
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim",       opts = {} },
+			{ "j-hui/fidget.nvim", opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
-			{ "folke/neodev.nvim",       opts = {} },
+			{ "folke/neodev.nvim", opts = {} },
 		},
 	},
 
@@ -38,12 +38,6 @@ return {
 			"williamboman/mason.nvim",
 			"jose-elias-alvarez/null-ls.nvim",
 		},
-	},
-
-	{
-		-- Useful plugin to show you pending keybinds.
-		"folke/which-key.nvim",
-		opts = {},
 	},
 
 	-- "gc" to comment visual regions/lines

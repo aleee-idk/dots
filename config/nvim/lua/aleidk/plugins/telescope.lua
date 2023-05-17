@@ -2,6 +2,7 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	version = "*",
+	event = "VeryLazy",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim" },
 		{
@@ -13,53 +14,53 @@ return {
 			end,
 		},
 	},
-	opts = {
-		defaults = {
-			mappings = {
-				i = {
-					["<c-u>"] = false,
-					["<c-d>"] = false,
+	config = function()
+		local actions = require("telescope.actions")
+		local telescope = require("telescope")
+		local builtin = require("telescope.builtin")
+
+		local opts = {
+			defaults = {
+				prompt_prefix = " ",
+				selection_caret = " ",
+				mappings = {
+					i = {
+						["<c-u>"] = false,
+						["<c-d>"] = false,
+						["<C-j>"] = actions.move_selection_next,
+						["<C-k>"] = actions.move_selection_previous,
+						["<C-s>"] = actions.file_vsplit,
+						["<C-v>"] = actions.file_split,
+						["<ESC>"] = actions.close,
+						["<c-t>"] = function(...)
+							return require("trouble.providers.telescope").open_with_trouble(...)
+						end,
+						["<a-t>"] = function(...)
+							return require("trouble.providers.telescope").open_selected_with_trouble(...)
+						end,
+					},
 				},
 			},
-		},
-	},
-	config = function(_, opts)
-		local telescope = require("telescope")
+		}
 		telescope.setup(opts)
 
 		-- Enable telescope fzf native, if installed
 		pcall(telescope.load_extension, "fzf")
 
-		-- See `:help telescope.builtin`
-		vim.keymap.set(
-			"n",
-			"<leader>?",
-			require("telescope.builtin").oldfiles,
-			{ desc = "[?] Find recently opened files" }
-		)
-		vim.keymap.set(
-			"n",
-			"<leader><space>",
-			require("telescope.builtin").buffers,
-			{ desc = "[ ] Find existing buffers" }
-		)
-		vim.keymap.set("n", "<leader>/", function()
-			-- You can pass additional configuration to telescope to change theme, layout, etc.
-			require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-				winblend = 10,
-				previewer = false,
-			}))
-		end, { desc = "[/] Fuzzily search in current buffer" })
+		-- Find files
+		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind existing [B]uffers" })
+		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
 
-		vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
-		vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
-		vim.keymap.set(
-			"n",
-			"<leader>sw",
-			require("telescope.builtin").grep_string,
-			{ desc = "[S]earch current [W]ord" }
-		)
-		vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-		vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
+		-- Search stuff
+		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+		vim.keymap.set("n", "<leader>sD", function()
+			builtin.commands({ bufnr = 0 })
+		end, { desc = "[S]earch Workspace [D]iagnostics" })
+		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch Document [D]iagnostics" })
+		vim.keymap.set("n", "<leader>sc", builtin.command_history, { desc = "[S]earch [C]ommand History" })
+		vim.keymap.set("n", "<leader>sC", builtin.commands, { desc = "[S]earch [C]ommands" })
 	end,
 }
