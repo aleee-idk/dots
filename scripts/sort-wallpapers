@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# WALLPAPER_DIR=${HOME}/Drives/Stuff/Pictures/Waifus
+WALLPAPER_DIR=${HOME}/Pictures/Screenshots
+
+readarray -td '' wallpapers < <(
+	fd -ap -e jpg -e jpeg -e png -e webp \
+		--max-depth 2 \
+		--print0 \
+		--base-directory "$WALLPAPER_DIR"
+)
+
+# open all images in imv
+imv "${wallpapers[@]}" &
+pid=$!
+
+sleep 1
+
+for img in "${wallpapers[@]}"; do
+
+	echo "$img"
+	sleep ".2"
+
+	imv-msg "$pid" next
+done
+
+imv-msg "$pid" close all
