@@ -8,12 +8,16 @@ alias pdw="pwd"
 #search content with ripgrep
 alias rg="rg --sort path"
 
-# prompt and do verbose
+# move stuff arround
 alias \
     cp='cp -iv' \
     mv='mv -iv' \
-    rm='rm -iv' \
     md='mkdir -pv';
+
+# delete stuff
+alias \
+    rm='trash -i' \
+    rmf='rm -rfI'
 
 # short long and common commands
 alias \
@@ -40,7 +44,11 @@ alias \
     # Query Stuff
 alias \
     ip='ip -human -color -brief addr' \
-    df='df -h'
+    df='df -h' \
+    du='dust --reverse' \
+    du1='dust --reverse --min-size 1M --depth 1' \
+    du2='dust --reverse --min-size 1M --depth 2' \
+    du3='dust --reverse --min-size 1M --depth 3' \
 
 ## Music Streams
 lofi_url="https://youtu.be/jfKfPfyJRdk"
