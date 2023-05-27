@@ -5,4 +5,7 @@ config/vifm/Trash
 config/vifm/vifminfo.json
 config/lazygit/state.yml
 config/mpv/shaders
+
+# locks
+**/*-lock.json
 config/spicetify/Backup

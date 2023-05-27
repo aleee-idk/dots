@@ -7,3 +7,6 @@
 [submodule "config/foot/themes/catppuccin"]
 	path = config/foot/themes/catppuccin
 	url = https://github.com/catppuccin/foot.git
+[submodule "config/alacritty/themes/rose-pine"]
+	path = config/alacritty/themes/rose-pine
+	url = https://github.com/rose-pine/alacritty.git

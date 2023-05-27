@@ -3,17 +3,13 @@ return {
 		--Usefull vanilla remaps
 
 		["J"] = { "mzJ`z", desc = "Keep cursor in column while joining lines" },
-
 		--
 		["<C-d>"] = { "<C-d>zz", desc = "Keep cursor centered while junping" },
 		["<C-u>"] = { "<C-u>zz", desc = "Keep cursor centered while junping" },
-
 		-- Keep cursor centered while searching
 		["n"] = { "nzzzv", desc = "Keep cursor centered while searching" },
 		["N"] = { "Nzzzv", desc = "Keep cursor centered while searching" },
-
 		["Q"] = "<nop>",
-
 		-- Buffers
 		["H"] = {
 			function()
@@ -27,7 +23,6 @@ return {
 			end,
 			desc = "Next buffer",
 		},
-
 		["<C-t>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
 		["<leader>fn"] = false,
 		["<leader>fo"] = false,
@@ -36,7 +31,6 @@ return {
 		["<F10>"] = false,
 		["<F11>"] = false,
 		["<F12>"] = false,
-
 		["<F1>"] = {
 			function()
 				require("dap").terminate()
@@ -91,7 +85,6 @@ return {
 			end,
 			desc = "Debugger: clear breakpoint",
 		},
-
 		["<leader>fp"] = {
 			function()
 				require("telescope").extensions.projects.projects()
@@ -110,33 +103,28 @@ return {
 			end,
 			desc = "Go to prev diagnostic",
 		},
-
 		["<leader>Ch"] = {
 			function()
 				require("nvim-comment-frame").add_comment()
 			end,
 			desc = "Add a comment frame",
 		},
-
 		["<leader>CH"] = {
 			function()
 				require("nvim-comment-frame").add_multiline_comment()
 			end,
 			desc = "Add a multiline comment frame",
 		},
-
 		["<leader>Cd"] = {
 			function()
 				require("neogen").generate()
 			end,
 			desc = "Generate comment docstring",
 		},
-
 		["<leader>ft"] = {
 			"<cmd>TodoTrouble<CR>",
 			desc = "Search TODOS",
 		},
-
 		["<leader>r"] = {
 			[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 			desc = "Search and replace current word",
@@ -151,12 +139,10 @@ return {
 			":s/",
 			desc = "Search and replace",
 		},
-
 		["p"] = {
 			[["_dP]],
 			desc = "Paste whitout lossing yanked text",
 		},
-
 		-- move selection up and down
 		["J"] = ":m '>+1<CR>gv=gv",
 		["K"] = ":m '<-2<CR>gv=gv",
