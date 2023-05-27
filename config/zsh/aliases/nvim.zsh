@@ -1,6 +1,6 @@
 alias \
-    vi='nvim' \
-    vi-astro='NVIM_APPNAME=AstroNvim nvim' \
+    vi='NVIM_APPNAME=AstroNvim nvim' \
+    vi-def='NVIM_APPNAME=AstroNvim nvim' \
     vi-lazy='NVIM_APPNAME=LazyVim nvim'
 
 vis() {
