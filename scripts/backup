@@ -144,6 +144,7 @@ for path in "${SOURCES[@]}"; do
 	delete_old "$path"
 done
 
-sync
+# Sync to MEGA
+# sync
 
 echo -e "${GRN}Backups done!${RST}"
