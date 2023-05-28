@@ -5,7 +5,7 @@
 
 set -e
 
-REPO="https://git.panconpalta.win/aleidk/dots"
+REPO="git@codeberg.org:aleidk/dots.git"
 DOTS="$HOME/Repos/Private/dots"
 CONFIG="$HOME/.config"
 BINS="$HOME/.local/bin"
