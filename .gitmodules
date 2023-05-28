@@ -1,5 +1,5 @@
 [submodule "config/AstroNvim"]
-	path = config/AstroNvim
+	path = config/Distro-AstroNvim
 	url = https://github.com/AstroNvim/AstroNvim
 [submodule "config/alacritty/themes/catppuccin"]
 	path = config/alacritty/themes/catppuccin
