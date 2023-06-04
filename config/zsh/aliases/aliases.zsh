@@ -12,6 +12,9 @@ alias rg="rg --sort path"
 alias \
     cp='cp -iv' \
     mv='mv -iv' \
+    cpr='rsync  -za --partial -hh --info=progress2' \
+    mvr='rsync  -za --remove-source-files --partial -hh --info=progress2' \
+    sync='rsync -zau --delete --partial -hh --info=progress2' \
     md='mkdir -pv';
 
 # delete stuff
@@ -44,11 +47,12 @@ alias \
     # Query Stuff
 alias \
     ip='ip -human -color -brief addr' \
-    df='df -h' \
+    df="duf --hide special --hide-mp '/boot,/boot/*'" \
     du='dust --reverse' \
     du1='dust --reverse --min-size 1M --depth 1' \
     du2='dust --reverse --min-size 1M --depth 2' \
     du3='dust --reverse --min-size 1M --depth 3' \
+    cat='bat';
 
 ## Music Streams
 lofi_url="https://youtu.be/jfKfPfyJRdk"

@@ -58,7 +58,6 @@ plugins=(
     # archlinux
     bgnotify
     colored-man-pages
-    cp # alias to use rsync to copy files
     docker
     docker-compose
     fd
@@ -66,7 +65,6 @@ plugins=(
     git
     git-prompt
     ripgrep
-    rsync
     safe-paste # don't run code when pasting
     systemd
     # tmux

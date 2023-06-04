@@ -41,3 +41,10 @@ profzsh() {
     shell=${1-$SHELL}
     ZPROF=true $shell -i -c exit
 }
+
+# Pretty Help
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+
