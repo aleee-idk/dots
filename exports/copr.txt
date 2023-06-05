@@ -1,1 +1,2 @@
 atim/lazygit
+atim/starship

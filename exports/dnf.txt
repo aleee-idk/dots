@@ -13,6 +13,7 @@ nodejs
 remove-retired-packages
 ripgrep
 sd
+starship
 tealdeer
 tmux
 tree-sitter-cli
