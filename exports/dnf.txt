@@ -1,4 +1,5 @@
 dnf-plugin-system-upgrade
+duf
 exa
 fd-find
 flatpak
@@ -11,6 +12,8 @@ neovim
 nodejs
 remove-retired-packages
 ripgrep
+sd
+starship
 tealdeer
 tmux
 tree-sitter-cli

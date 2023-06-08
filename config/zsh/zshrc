@@ -58,20 +58,13 @@ plugins=(
     # archlinux
     bgnotify
     colored-man-pages
-    cp # alias to use rsync to copy files
     docker
     docker-compose
     fd
     fzf
     git
-    git-prompt
-    ripgrep
-    rsync
     safe-paste # don't run code when pasting
     systemd
-    # tmux
-    # vi-mode
-    yarn
     z
     zsh-autocomplete
     zsh-autopair
@@ -121,3 +114,5 @@ fi
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(starship init zsh)"

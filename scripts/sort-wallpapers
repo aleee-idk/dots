@@ -1,28 +1,62 @@
 #!/usr/bin/env bash
 
-path="$1"
-imgs=($PWD/$path/*)
+set -euo pipefail
 
-imv "${imgs[@]}" &
-imv_pid=$!
+SCAN_DIR=${HOME}/Drives/Stuff/Pictures/Waifus
+OUPUT_DIR=${HOME}/Drives/Stuff/Pictures/Wallpapers
+# SCAN_DIR=${HOME}/Pictures/Screenshots
 
-echo $imv_pid
-imv-msg $imv_pid close all
+franchises=(
+    Mario
+    Zelda
+    Persona
+)
 
-for file in "${imgs[@]}"; do
-    echo $file
-    imv-msg $imv_pid open "$file"
-    read "test"
+orientations=(
+    Portrait
+    Landscape
+)
+
+# TODO: give option to exit script while inside fzf
+get_fzf() {
+    # run inside subshell because fzf exit with 1 when no mach has been selected
+    output="$(
+        printf "%s\n" "$@" | fzf \
+            --reverse \
+            --height '10' \
+            --print-query \
+            --cycle \
+            --bind \
+            "alt-1:pos(1)+accept,alt-2:pos(2)+accept,alt-3:pos(3)+accept,alt-4:pos(4)+accept,alt-5:pos(5)+accept,alt-6:pos(6)+accept,alt-7:pos(7)+accept,alt-8:pos(8)+accept,alt-9:pos(9)+accept,alt-0:pos(10)+accept"
+    )"
+    echo "$output"
+}
+
+readarray -td '' wallpapers < <(
+    fd -ap -e jpg -e jpeg -e png -e webp \
+        --max-depth 2 \
+        --print0 \
+        --base-directory "$SCAN_DIR"
+)
+
+# open all images in imv
+imv "${wallpapers[@]}" &
+pid=$!
+
+sleep 1
+
+for dir in "${orientations[@]}"; do
+    mkdir -p "$OUPUT_DIR/$dir"
 done
 
-imv-msg $imv_pid close all
+for img in "${wallpapers[@]}"; do
+    orientation=$(get_fzf "${orientations[@]}")
+    franchise=$(get_fzf "${franchises[@]}")
 
-# while true; do
-# 	# Some custom logic
-# 	# ...
-#
-# 	# Close all open files
-# 	imv-msg $imv_pid close all
-# 	# Open some new files
-# 	imv-msg $imv_pid open ~/new_path
-# done
+    cp "$img" "$OUPUT_DIR/$orientation"
+
+    echo "$img $orientation $franchise"
+    imv-msg "$pid" next
+done
+
+imv-msg "$pid" close all
