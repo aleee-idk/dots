@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+path="$1"
+imgs=($PWD/$path/*)
+
+imv "${imgs[@]}" &
+imv_pid=$!
+
+echo $imv_pid
+imv-msg $imv_pid close all
+
+for file in "${imgs[@]}"; do
+    echo $file
+    imv-msg $imv_pid open "$file"
+    read "test"
+done
+
+imv-msg $imv_pid close all
+
+# while true; do
+# 	# Some custom logic
+# 	# ...
+#
+# 	# Close all open files
+# 	imv-msg $imv_pid close all
+# 	# Open some new files
+# 	imv-msg $imv_pid open ~/new_path
+# done
