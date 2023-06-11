@@ -11,11 +11,9 @@ export VISUAL="$EDITOR"
 export QT_STYLE_OVERRIDE=kvantum
 
 # Dev Stuff
-export PYENV_ROOT="$HOME/.pyenv"
 export NPM_PACKAGES="$HOME/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export NVM_DIR="$HOME/.nvm"
 
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
 # command
@@ -31,10 +29,6 @@ update_path "$DOTS/scripts"
 update_path "$HOME/bin"
 update_path "$NPM_PACKAGES/bin"
 update_path "$PNPM_HOME"
-update_path "$PYENV_ROOT/bin"
+update_path "$HOME/.local/share/rtx/shims"
 
 . "$HOME/.cargo/env"
-
-eval "$(pyenv init --path)"
-
-tmux new-session -d "default"

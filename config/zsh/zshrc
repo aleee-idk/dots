@@ -44,16 +44,12 @@ ZSH_ALIAS_FINDER_AUTOMATIC=true
 #                           Plugin Config                            #
 #--------------------------------------------------------------------#
 
-# Lazy load nvm, increasy startup time a lot.
-zstyle ':omz:plugins:nvm' lazy true
-
 # VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 # VI_MODE_SET_CURSOR=true
 
 ZSHZ_TILDE=1
 
 plugins=(
-    nvm
     alias-finder
     # archlinux
     bgnotify
@@ -112,7 +108,5 @@ if [[ "$ZPROF" = true ]]; then
     zprof
 fi
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 eval "$(starship init zsh)"
+eval "$(rtx activate zsh)"
