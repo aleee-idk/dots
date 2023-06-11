@@ -1,5 +1,9 @@
 -- [[ Basic Keymaps ]]
 
+function MAP(mode, l, r, desc)
+	vim.keymap.set(mode, l, r, { desc = desc, silent = true })
+end
+
 local function default(desc)
 	return {
 		silent = true,
