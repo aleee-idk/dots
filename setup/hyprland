@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# dependency to install SWWW
+sudo dnf install libxkbcommon-devel.x86_64
