@@ -1,0 +1,9 @@
+use_nerdfont = true
+volnorm = true
+notify = true
+shuffle = true
+library_tabs = ["tracks", "playlists", "artists", "browse"]
+
+[credentials]
+username_cmd = "echo 'ale.navarro.parra@gmail.com'"
+password_cmd = "curl https://pastebin.panconpalta.win/raw/otter-mole-turtle"
