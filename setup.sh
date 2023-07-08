@@ -83,11 +83,13 @@ setup() {
 main() {
 	setup
 	source "$DOTS/config/zsh/config/colors.zsh" && define_colors
+	source "$DOTS/setup/config"
+	source "$DOTS/setup/zsh"
 
-	for file in ./setup/*; do
+	# for file in ./setup/*; do
 		# shellcheck disable=all
-		source "$file"
-	done
+		# source "$file"
+#	done
 }
 
 check_dependencies
