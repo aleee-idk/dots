@@ -9,6 +9,7 @@ export DOTS="$HOME/Repos/Private/dots"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export QT_STYLE_OVERRIDE=kvantum
+export MOZ_ENABLE_WAYLAND=1
 
 # Dev Stuff
 export NPM_PACKAGES="$HOME/.npm-packages"

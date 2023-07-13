@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -45,6 +45,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.theme = "catppuccin-macchiato";
+  systemd.services.sddm.serviceConfig.TimeoutStartSec = lib.mkForce "5s";
   # services.xserver.displayManager.gdm.wayland = true;
   # services.xserver.desktopManager.gnome.enable = true;
   # enable sway window manager
@@ -145,7 +146,7 @@
     slurp # screenshot
     starship
     swayidle
-    swaylock
+    swaylock-effects
     swaycons
     tealdeer
     tmux
@@ -156,8 +157,15 @@
     xdg-utils
     zellij
     zsh
-    pulseaudio
     brightnessctl
+    libnotify
+    autotiling
+    wdisplays
+    imv
+    mpv
+    celluloid
+    swappy
+    signal-desktop
     (callPackage ./theme.nix { }).sddm-catppucin-theme
   ];
 
