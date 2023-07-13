@@ -10,3 +10,6 @@
 [submodule "config/alacritty/themes/rose-pine"]
 	path = config/alacritty/themes/rose-pine
 	url = https://github.com/rose-pine/alacritty.git
+[submodule "Sway Catppuccin Theme"]
+	path = config/sway/themes/catppuccin
+	url = https://github.com/catppuccin/i3.git

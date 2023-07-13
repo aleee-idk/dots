@@ -266,7 +266,17 @@ bindgesture swipe:up scratchpad show
 gaps inner 10
 gaps outer 2
 default_border pixel 2
+smart_borders on
 default_floating_border pixel 2
 
 xwayland enable
 
+include ./themes/catppuccin/themes/catppuccin-macchiato
+
+# target                 title     bg    text   indicator  border
+client.focused           $teal     $base $text  $teal      $teal
+client.focused_inactive  $base     $base $text  $base      $base
+client.unfocused         $base     $base $text  $base      $base
+client.urgent            $peach    $base $peach $peach     $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
