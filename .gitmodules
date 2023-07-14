@@ -13,3 +13,6 @@
 [submodule "Sway Catppuccin Theme"]
 	path = config/sway/themes/catppuccin
 	url = https://github.com/catppuccin/i3.git
+[submodule "Waybar Catppuccin Theme"]
+	path = config/waybar/themes/catppuccin
+	url = https://github.com/catppuccin/waybar.git

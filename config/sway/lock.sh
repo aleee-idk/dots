@@ -13,5 +13,4 @@ swaylock \
 	--line-color 00000000 \
 	--inside-color 00000088 \
 	--separator-color 00000000 \
-	--grace 2 \
-	--fade-in 0.3
+	--grace 2
