@@ -256,8 +256,9 @@ exec mako
 # 2 option uses tablet events
 
 # exec monitor-sensor | bash $DOTS/config/sway/autorotate &> /tmp/autorotate.log
-bindswitch tablet:toggle output "eDP-1" transform 180 clockwise 
-# bindswitch lid:toggle exec echo "Lid moved" &>/tmp/lid.log
+bindswitch tablet:toggle output "eDP-1" transform 180 clockwise ; input "type:touch" map_to_output "eDP-1" ; input "type:tablet_tool" map_to_output "eDP-1"
+# bindswitch tablet:on busctl call --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 SetVisible b true
+# bindswitch tablet:off busctl call --user sm.puri.OSK0 /sm/puri/OSK0 sm.puri.OSK0 SetVisible b false
 
 bindgesture swipe:left workspace prev
 bindgesture swipe:right workspace next

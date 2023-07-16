@@ -28,13 +28,11 @@
         "warp-on-scroll": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
-            "urgent": "",
-            "focused": "",
+            "1": "",
+            "2": "",
+            "3": "",
+            "9": "",
+            "10": "󰌳",
             "default": ""
         }
     },
@@ -86,8 +84,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": "󰅶",
+            "deactivated": "󰾪"
         }
     },
     "tray": {
@@ -96,13 +94,14 @@
     },
     "clock": {
         // "timezone": "America/New_York",
+        "format": "{:%I:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "format": "{usage}% ",
         "tooltip": false
-    },
+    },   
     "memory": {
         "format": "{}% "
     },
@@ -126,15 +125,12 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface

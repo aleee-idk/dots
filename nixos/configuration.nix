@@ -166,6 +166,9 @@
     celluloid
     swappy
     signal-desktop
+    squeekboard
+    python3
+    nodePackages.pnpm
     (callPackage ./theme.nix { }).sddm-catppucin-theme
   ];
 
