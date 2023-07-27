@@ -9,5 +9,5 @@ config/mpv/shaders
 # locks
 **/*-lock.json
 config/spicetify/Backup
-nixos/hardware-configuration.nix
+# nixos/hardware-configuration.nix
 result
