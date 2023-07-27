@@ -7,9 +7,6 @@ setup_zsh() {
   create "$HOME/.local/state/zsh/"
   symlink "$DOTS/config/zsh/zshrc" "$HOME"/.zshrc
   symlink "$DOTS/config/zsh/zprofile" "$HOME"/.zprofile
-  if [ "$SHELL" != "$(which zsh)" ]; then
-    chsh -s "$(which zsh)"
-  fi
 }
 
 setup_zsh

@@ -2,12 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
-    [
-      # Include the results of the hardware scan.
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -15,8 +14,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-1575a101-9e21-4b2c-b64f-64de1ca35b89".device = "/dev/disk/by-uuid/1575a101-9e21-4b2c-b64f-64de1ca35b89";
+  boot.initrd.luks.devices."luks-1575a101-9e21-4b2c-b64f-64de1ca35b89".keyFile = "/crypto_keyfile.bin";
+
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -43,32 +50,14 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.theme = "catppuccin-macchiato";
-  systemd.services.sddm.serviceConfig.TimeoutStartSec = lib.mkForce "5s";
-  # services.xserver.displayManager.gdm.wayland = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      export MOZ_ENABLE_WAYLAND=1
-    '';
-  };
-  programs.waybar.enable = true;
-
-  services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
     layout = "latam";
     xkbVariant = "";
+    xkbOptions = "caps:escape";
   };
 
   # Configure console keymap
@@ -102,10 +91,15 @@
     isNormalUser = true;
     description = "aleidk";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    ];
   };
+
+  # Enable automatic login for the user.
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "aleidk";
+
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -115,11 +109,12 @@
   environment.systemPackages = with pkgs; [
     alacritty
     bat
-    bemenu
     cargo
+    celluloid
     duf
     exa
     fd
+    firefox
     flatpak
     fzf
     gcc
@@ -127,71 +122,43 @@
     glib
     gnome.gnome-software
     gnome.gnome-tweaks
+    gnome.dconf-editor
+    gnomeExtensions.arcmenu
+    gnomeExtensions.caffeine
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.extensions-sync
+    gnomeExtensions.gesture-improvements
+    gnomeExtensions.go-to-last-workspace
     gnomeExtensions.hibernate-status-button
-    grim
-    grim #screenshots
-    hyprland
-    hyprpaper
+    gnomeExtensions.just-perfection
+    imv
     jq
     lazygit
     luajitPackages.luarocks
-    mako
-    mako
+    mpv
     neovim
+    neovim
+    nodePackages.pnpm
     nodejs
+    python3
     ripgrep
     rustc
     sd
-    slurp
-    slurp # screenshot
+    signal-desktop
     starship
-    swayidle
-    swaylock-effects
-    swaycons
     tealdeer
     tmux
     tree-sitter
     wget
     wl-clipboard
-    wl-clipboard
     xdg-utils
     zellij
     zsh
-    brightnessctl
-    libnotify
-    autotiling
-    wdisplays
-    imv
-    mpv
-    celluloid
-    swappy
-    signal-desktop
-    squeekboard
-    python3
-    nodePackages.pnpm
-    (callPackage ./theme.nix { }).sddm-catppucin-theme
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
+  hardware.sensor.iio.enable = true;
   services.flatpak.enable = true;
 
   nix.gc = {
@@ -215,5 +182,32 @@
     }
     )
   ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
