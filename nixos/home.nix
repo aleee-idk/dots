@@ -34,6 +34,19 @@
     zellij
   ];
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Teal-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "teal" ];
+        # size = "compact";
+        # tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
+    };
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

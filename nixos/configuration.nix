@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -136,9 +137,10 @@
     xdg-utils
     zsh
     starship
+    catppuccin-cursors.macchiatoTeal
   ];
 
-  
+
 
   hardware.sensor.iio.enable = true;
   services.flatpak.enable = true;
@@ -156,7 +158,7 @@
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override {
       fonts = [
         "JetBrainsMono"
