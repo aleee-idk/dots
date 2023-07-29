@@ -1,3 +1,2 @@
 atim/lazygit
 atim/starship
-solopasha/hyprland

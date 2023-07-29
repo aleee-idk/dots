@@ -9,9 +9,8 @@ gcc
 gcc-c++
 git
 gnome-software
-hyprland
-hyprpaper
 neovim
+lazygit
 nodejs
 remove-retired-packages
 ripgrep
