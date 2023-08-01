@@ -9,9 +9,10 @@ gcc
 gcc-c++
 git
 gnome-software
-neovim
 lazygit
+neovim
 nodejs
+papirus-icon-theme
 remove-retired-packages
 ripgrep
 sd

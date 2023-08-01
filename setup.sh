@@ -87,9 +87,9 @@ main() {
 	source "$DOTS/setup/zsh"
 
 	# for file in ./setup/*; do
-		# shellcheck disable=all
-		# source "$file"
-#	done
+	# shellcheck disable=all
+	# source "$file"
+	#	done
 }
 
 check_dependencies
