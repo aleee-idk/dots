@@ -23,6 +23,8 @@ return {
 			defaults = {
 				prompt_prefix = " ",
 				selection_caret = " ",
+				layout_strategy = "vertical",
+				layout_config = { vertical = { height = 0.99, mirror = true, prompt_position = "top" } },
 				mappings = {
 					i = {
 						["<c-u>"] = false,
@@ -32,6 +34,8 @@ return {
 						["<C-s>"] = actions.file_vsplit,
 						["<C-v>"] = actions.file_split,
 						["<ESC>"] = actions.close,
+						["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+						["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 						["<c-t>"] = function(...)
 							return require("trouble.providers.telescope").open_with_trouble(...)
 						end,
@@ -48,19 +52,30 @@ return {
 		pcall(telescope.load_extension, "fzf")
 
 		-- Find files
-		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind existing [B]uffers" })
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
+		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
+		vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Find in quickfix" })
+		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+		vim.keymap.set("n", "<leader>fF", function()
+			builtin.find_files({ hidden = true, no_ignore = true })
+		end, { desc = "Find all files" })
 
-		-- Search stuff
-		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-		vim.keymap.set("n", "<leader>sD", function()
-			builtin.commands({ bufnr = 0 })
-		end, { desc = "[S]earch Workspace [D]iagnostics" })
-		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch Document [D]iagnostics" })
-		vim.keymap.set("n", "<leader>sc", builtin.command_history, { desc = "[S]earch [C]ommand History" })
-		vim.keymap.set("n", "<leader>sC", builtin.commands, { desc = "[S]earch [C]ommands" })
+		-- Search inside files
+		vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find word under cursor" })
+		vim.keymap.set("n", "<leader>fW", builtin.live_grep, { desc = "Find word (live grep)" })
+
+		-- Help
+		vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Find in commands history" })
+		vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Find a command" })
+		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
+		vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
+
+		-- Diagnosticos
+		vim.keymap.set("n", "<leader>fd", function()
+			builtin.diagnostics({ bufnr = 0 })
+		end, { desc = "Find diagnostics" })
+		vim.keymap.set("n", "<leader>fD", function()
+			builtin.diagnostics({ bufnr = nil })
+		end, { desc = "Find diagnostics in workspace" })
+		vim.keymap.set("n", "<leader>fz", builtin.spell_suggest, { desc = "Find spell suggestion" })
 	end,
 }
