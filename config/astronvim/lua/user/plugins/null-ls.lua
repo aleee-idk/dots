@@ -5,6 +5,7 @@ return {
 		opts.sources = {
 			null_ls.builtins.formatting.prettierd.with({
 				disabled_filetypes = { "markdown" },
+				extra_filetypes = { "astro" },
 			}),
 
 			null_ls.builtins.formatting.phpcsfixer.with({

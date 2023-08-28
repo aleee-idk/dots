@@ -20,6 +20,7 @@ return {
 			added = " ",
 			modified = " ",
 			removed = " ",
+			branch = "",
 		},
 		kinds = {
 			Array = " ",
