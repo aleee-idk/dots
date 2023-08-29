@@ -51,14 +51,15 @@ ZSHZ_TILDE=1
 
 plugins=(
     alias-finder
-    # archlinux
     bgnotify
     colored-man-pages
+    composer
     docker
     docker-compose
     fd
     fzf
     git
+    laravel
     safe-paste # don't run code when pasting
     systemd
     z
@@ -66,8 +67,8 @@ plugins=(
     zsh-autopair
     zsh-autosuggestions
     zsh-completions
-    zsh-syntax-highlighting
     zsh-interactive-cd
+    zsh-syntax-highlighting
 )
 
 # If not running interactively, don't do anything

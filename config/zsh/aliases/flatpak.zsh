@@ -1,3 +1,7 @@
+if [[ $OSTYPE -ne 'linux-gnu' ]]; then
+  return
+fi
+
 # Auto-generated aliases for Flatpak applications
 
 alias pikabackup='flatpak run org.gnome.World.PikaBackup'
