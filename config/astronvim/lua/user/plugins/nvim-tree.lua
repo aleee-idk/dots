@@ -1,6 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	-- enabled = false,
+	enabled = true,
 	version = "*",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
@@ -8,7 +8,7 @@ return {
 	lazy = false,
 	config = function()
 		local tree = require("nvim-tree")
-		local tree_cb = require("nvim-tree.config").nvim_tree_callback
+		local api = require("nvim-tree.api")
 
 		tree.setup({
 			hijack_unnamed_buffer_when_opening = true,
@@ -31,23 +31,28 @@ return {
 			},
 			view = {
 				centralize_selection = true, -- center current file on enter
-				width = 30, -- N° of columns or %
-				mappings = {
-					custom_only = false,
-					-- list of mappings to set on the tree manually
-					list = {
-						{ key = { "l", "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
-						-- {key = {"L", "<2-RightMouse>", "<C-]>"}, action = "cd"},
-						{ key = "s",                                   action = "vsplit" },
-						{ key = "v",                                   action = "split" },
-						{ key = "t",                                   action = "tabnew" },
-						{ key = { "h", "<BS>" },                       action = "close_node" },
-						{ key = "i",                                   action = "toggle_dotfiles" },
-						{ key = "I",                                   action = "toggle_ignored" },
-						{ key = { "<C-l>", "<C-CR>" },                 cb = tree_cb("system_open") },
-					},
-				},
+				width = 30,              -- N° of columns or %
 			},
+			on_attach = function(bufnr)
+				local function opts(desc)
+					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+				end
+
+				-- Check defaults here: https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach
+				api.config.mappings.default_on_attach(bufnr)
+
+				vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
+				vim.keymap.set("n", "o", api.node.open.edit, opts("Open"))
+				vim.keymap.set("n", "<CR>", api.node.open.edit, opts("Open"))
+				vim.keymap.set("n", "<2-LeftMouse>", api.node.open.edit, opts("Open"))
+				vim.keymap.set("n", "s", api.node.open.vertical, opts("Open in vsplit"))
+				vim.keymap.set("n", "v", api.node.open.horizontal, opts("Open in hsplit"))
+				vim.keymap.set("n", "t", api.node.open.tab, opts("Open in tab"))
+				vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Close dir"))
+				vim.keymap.set("n", "<BS>", api.node.navigate.parent_close, opts("Close dir"))
+				vim.keymap.set("n", "i", api.tree.toggle_hidden_filter, opts("Toggle Dotfiles"))
+				vim.keymap.set("n", "I", api.tree.toggle_gitignore_filter, opts("Toggle Git Ignore"))
+			end,
 		})
 
 		-- Auto open when a dir is opened

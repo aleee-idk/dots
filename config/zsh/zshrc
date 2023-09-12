@@ -110,5 +110,5 @@ if [[ "$ZPROF" = true ]]; then
 fi
 
 eval "$(starship init zsh)"
-# eval "$(rtx activate zsh)"
+eval "$(rtx activate zsh)"
 # eval "$(zellij setup --generate-auto-start zsh)"
