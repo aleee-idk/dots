@@ -5,6 +5,9 @@ return {
 	opts = {
 		flavour = "macchiato",
 		transparent_background = true,
+		integrations = {
+			fidget = true,
+		},
 	},
 
 	config = function(_, opts)

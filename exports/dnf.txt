@@ -21,3 +21,4 @@ tealdeer
 tmux
 tree-sitter-cli
 zsh
+firefox-dev
