@@ -23,9 +23,6 @@ return {
 		},
 	},
 
-	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
-
 	{
 		"famiu/bufdelete.nvim",
 		config = nil,
