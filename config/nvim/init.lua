@@ -24,4 +24,3 @@ require("lazy").setup("aleidk.plugins")
 
 require("aleidk.keymaps")
 require("aleidk.autocmds")
-require("aleidk.IDE")
