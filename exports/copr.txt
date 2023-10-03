@@ -1,2 +1,3 @@
 atim/lazygit
 atim/starship
+the4runner/firefox-dev
