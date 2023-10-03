@@ -5,6 +5,7 @@ return {
 
 	opt = {
 		number = true,
+		scrolloff = 15,
 		relativenumber = true,
 		-- spelllang = "en_us,es_cl",
 	},
