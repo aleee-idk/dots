@@ -1,4 +1,4 @@
-if [[ $OSTYPE -ne 'linux-gnu' ]]; then
+if [[ "$OSTYPE" != 'linux-gnu' ]]; then
   return
 fi
 
