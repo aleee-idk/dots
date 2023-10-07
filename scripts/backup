@@ -7,7 +7,7 @@ source "$DOTS/config/zsh/config/colors.zsh" && define_colors
 
 LOCAL_BACKUP_PATH="$HOME/Drives/Backups/auto-backups/"
 REMOTE_BACKUP_PATH="auto-backups"
-RCLONE_CLOUD_NAME="mega"
+RCLONE_CLOUD_NAME="GDrive"
 
 DATE_FORMAT="+%F"
 
