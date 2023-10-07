@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+RCLONE_CLOUD_NAME='GDrive'
+
+declare -A SOURCES
+# key local, value remote
+SOURCES["$HOME/Drives/Stuff/Pictures"]="/01_Personal/01_Pictures"
+SOURCES["$HOME/Drives/Stuff/Music"]="/01_Personal/02_Music"
+SOURCES["$HOME/Drives/Backups/auto-backups/services/last"]="/80_Backups/Services"
+
+config="$(rclone config dump 2>/dev/null | jq ".$RCLONE_CLOUD_NAME  // empty")"
+
+if [[ -z "$config" ]]; then
+	echo -e "${RED}${SHL}No Rclone configuration! skiping sync.${RST}${EHL}\n"
+	return
+fi
+
+for i in "${!SOURCES[@]}"; do
+	local=$i
+	remote=${SOURCES[$i]}
+
+	rclone bisync \
+		--copy-links \
+		--progress \
+		--resync \
+		--stats-one-line \
+		"$local" "${RCLONE_CLOUD_NAME}:${remote}"
+done
