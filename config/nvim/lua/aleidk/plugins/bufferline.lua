@@ -24,7 +24,6 @@ return {
 		local opts = {
 			highlights = { separator = { bg = "NONE" } },
 			options = {
-				-- FIXME: Doesn't work with onedark pro colorscheme
 				-- separator_style = "padded_slant",
 				-- themable = true,
 				close_command = function(n)
@@ -39,10 +38,21 @@ return {
 							.. (diag.warning and icons.Warn .. diag.warning or "")
 					return vim.trim(ret)
 				end,
+				-- return false to exluce buffers
+				custom_filter = function(buf_number)
+					if vim.bo[buf_number].filetype == "qf" then
+						return false
+					end
+					if vim.fn.bufname(buf_number) == "" then
+						return false
+					end
+
+					return true
+				end,
 				offsets = {
 					{
 						filetype = "NvimTree",
-						-- text = "nvim-tree",
+						text = "nvim-tree",
 						highlight = "Directory",
 						text_align = "left",
 					},
