@@ -48,3 +48,6 @@ help() {
     "$@" --help 2>&1 | bathelp
 }
 
+fzf-jq() {
+    echo '' | fzf --print-query --preview="jq -r {q} <$@"
+}
