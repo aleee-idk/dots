@@ -6,7 +6,6 @@ return { -- Change colors.none if not using a transparent background
 		flavour = "macchiato",
 		transparent_background = false,
 		integrations = {
-			fidget = true,
 			cmp = true,
 		},
 		custom_highlights = function(colors)
