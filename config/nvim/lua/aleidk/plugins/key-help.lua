@@ -47,6 +47,7 @@ return {
 				miniclue.gen_clues.z(),
 
 				{ mode = "n", keys = "<Leader>b",        desc = "+Buffers" },
+				{ mode = "n", keys = "<Leader>c",        desc = "+Comments" },
 				{ mode = "n", keys = "<Leader>bh",       postkeys = "<Leader>b" },
 				{ mode = "n", keys = "<Leader>bl",       postkeys = "<Leader>b" },
 				{ mode = "n", keys = "<Leader>l",        desc = "+LSP" },
