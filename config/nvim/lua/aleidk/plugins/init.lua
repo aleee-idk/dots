@@ -28,7 +28,7 @@ return {
 		config = nil,
 		keys = {
 			{
-				"<leader>c",
+				"<leader>bc",
 				function()
 					require("bufdelete").bufdelete(0, true)
 				end,

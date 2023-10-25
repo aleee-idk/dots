@@ -19,7 +19,7 @@ return {
 		},
 
 		-- Additional lua configuration, makes nvim stuff amazing!
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/neodev.nvim",      opts = {} },
 	},
 
 	config = function()
@@ -40,8 +40,8 @@ return {
 				vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 			end
 
-			nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-			nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+			nmap("<leader>lr", vim.lsp.buf.rename, "[R]e[n]ame")
+			nmap("<leader>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
 			nmap("gd", vim.lsp.buf.definition, "Go to definition")
 			nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
