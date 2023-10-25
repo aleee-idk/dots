@@ -24,14 +24,7 @@ return {
 
 	config = function()
 		-- LSP settings.
-		--  This function gets run when an LSP connects to a particular buffer.
 		local on_attach = function(_, bufnr)
-			-- NOTE: Remember that lua is a real programming language, and as such it is possible
-			-- to define small helper and utility functions so you don't have to repeat yourself
-			-- many times.
-			--
-			-- In this case, we create a function that lets us more easily define mappings specific
-			-- for LSP related items. It sets the mode, buffer and description for us each time.
 			local nmap = function(keys, func, desc)
 				if desc then
 					desc = "LSP: " .. desc
@@ -40,11 +33,14 @@ return {
 				vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 			end
 
-			nmap("<leader>lr", vim.lsp.buf.rename, "[R]e[n]ame")
-			nmap("<leader>la", vim.lsp.buf.code_action, "[C]ode [A]ction")
+			nmap("<leader>lr", vim.lsp.buf.rename, "Rename")
+			nmap("<leader>la", vim.lsp.buf.code_action, "Code Action")
+			nmap("<leader>lf", function()
+				vim.lsp.buf.format()
+			end, "Format")
 
 			nmap("gd", vim.lsp.buf.definition, "Go to definition")
-			nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+			nmap("gr", require("telescope.builtin").lsp_references, "Goto References")
 			nmap("gI", vim.lsp.buf.implementation, "Go to Implementation")
 
 			-- See `:help K` for why this keymap
@@ -52,12 +48,12 @@ return {
 			nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 			-- Lesser used LSP functionality
-			nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-			nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-			nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+			nmap("gD", vim.lsp.buf.declaration, "Goto Declaration")
+			nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
+			nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
 			nmap("<leader>wl", function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, "[W]orkspace [L]ist Folders")
+			end, "Workspace List Folders")
 
 			-- Create a command `:Format` local to the LSP buffer
 			vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
@@ -66,10 +62,6 @@ return {
 		end
 
 		-- Enable the following language servers
-		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-		--
-		--  Add any additional override configuration in the following tables. They will be passed to
-		--  the `settings` field of the server config. You must look up that documentation yourself.
 		local servers = {
 			bashls = {},
 			cssls = {},
@@ -79,21 +71,23 @@ return {
 			pyright = {},
 			rust_analyzer = {},
 			sqlls = {},
-			tsserver = {},
+			tsserver = {
+				init_options = {
+					preferences = {
+						disableSuggestions = true,
+					},
+				},
+			},
 			yamlls = {},
 			lua_ls = {
-				Lua = {
-					workspace = { checkThirdParty = false },
-					telemetry = { enable = false },
+				settigns = {
+					Lua = {
+						workspace = { checkThirdParty = false },
+						telemetry = { enable = false },
+					},
 				},
 			},
 		}
-
-		-- Diagnostic keymaps
-		-- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-		-- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-		-- vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-		-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 		-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -108,12 +102,41 @@ return {
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
-				require("lspconfig")[server_name].setup({
+				local _border = "single"
+
+				local default_config = {
 					capabilities = capabilities,
 					on_attach = on_attach,
-					settings = servers[server_name],
-				})
+					handlers = {
+						["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+							border = _border,
+						}),
+						["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+							border = _border,
+						}),
+					},
+				}
+
+				require("lspconfig")[server_name].setup(
+					vim.tbl_deep_extend("force", default_config, servers[server_name] or {})
+				)
 			end,
+		})
+
+		vim.diagnostic.config({
+			underline = true,
+			update_in_insert = false,
+			virtual_text = false,
+			-- virtual_text = {
+			-- 	spacing = 1,
+			-- 	source = "if_many",
+			-- 	prefix = " ●",
+			-- 	suffix = " ",
+			-- 	-- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+			-- 	-- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+			-- 	-- prefix = "icons",
+			-- },
+			severity_sort = true,
 		})
 	end,
 }

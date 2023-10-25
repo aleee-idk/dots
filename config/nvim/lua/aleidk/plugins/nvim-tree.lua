@@ -1,6 +1,6 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	enabled = false,
+	-- enabled = false,
 	version = "*",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
@@ -81,7 +81,8 @@ return {
 		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 		-- bindings
-		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
-		vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
+		-- disabled to discourage the use of this plugin without disabling it
+		-- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
+		-- vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
 	end,
 }

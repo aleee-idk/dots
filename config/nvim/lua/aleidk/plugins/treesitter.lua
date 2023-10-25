@@ -72,10 +72,11 @@ return {
 	},
 	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)
-		vim.cmd([[
-			set foldmethod=expr
-			set foldexpr=nvim_treesitter#foldexpr()
-			set nofoldenable
-		]])
+
+		vim.opt.foldmethod = "expr"
+		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+		-- Uncoment this line to disable auto folding on file open
+		-- vim.cmd("set nofoldenable")
 	end,
 }

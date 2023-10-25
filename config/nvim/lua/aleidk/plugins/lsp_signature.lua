@@ -1,12 +1,12 @@
 return {
 	"ray-x/lsp_signature.nvim",
-	lazy = false, -- Doesn't work if lazy loaded
+	event = "VeryLazy",
 	opts = {
 		hint_enable = false,
 	},
 	keys = {
 		{
-			"<leader>lk",
+			"<leader>lK",
 			vim.lsp.buf.signature_help,
 			desc = "Toggle signature",
 		},
