@@ -2,22 +2,28 @@ return {
 	-- Add indentation guides even on blank lines
 	"lukas-reineke/indent-blankline.nvim",
 	event = { "BufReadPost", "BufNewFile" },
+	main = "ibl",
 	opts = {
 		-- char = "▏",
-		char = "│",
-		filetype_exclude = {
-			"help",
-			"alpha",
-			"dashboard",
-			"neo-tree",
-			"Trouble",
-			"lazy",
-			"mason",
-			"notify",
-			"toggleterm",
-			"lazyterm",
+		indent = {
+			char = "│",
 		},
-		show_trailing_blankline_indent = true,
-		show_current_context = true,
+		scope = {
+			enabled = true,
+		},
+		exclude = {
+			filetypes = {
+				"help",
+				"alpha",
+				"dashboard",
+				"neo-tree",
+				"Trouble",
+				"lazy",
+				"mason",
+				"notify",
+				"toggleterm",
+				"lazyterm",
+			},
+		},
 	},
 }

@@ -7,6 +7,11 @@ return { -- Change colors.none if not using a transparent background
 		transparent_background = false,
 		integrations = {
 			cmp = true,
+			indent_blankline = {
+				enabled = true,
+				scope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
+				colored_indent_levels = true,
+			},
 		},
 		custom_highlights = function(colors)
 			return {
