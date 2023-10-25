@@ -44,4 +44,5 @@ return {
 			require("illuminate").configure(opts)
 		end,
 	},
+	{ "nvim-treesitter/nvim-treesitter-context" },
 }
