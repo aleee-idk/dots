@@ -29,7 +29,6 @@ return {
         map("n", "p", gs.preview_hunk, "Preview Hunk")
         map("n", "l", function() gs.blame_line() end, "Blame Line")
         map("n", "d", gs.diffthis, "Diff This")
-        map("n", "D", function() gs.diffthis("~") end, "Diff This ~")
 			end,
 		},
 	},

@@ -41,4 +41,9 @@ return {
 		end,
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		event = "VeryLazy",
+	},
 }
