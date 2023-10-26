@@ -18,8 +18,8 @@ return {
 
 		dashboard.section.buttons.val = {
 			dashboard.button("LDR f f", "  Find File  ", "<leader>ff"),
-			dashboard.button("LDR e", "פּ  File Explorer  ", "<leader>fe"),
 			dashboard.button("LDR LDR t", "  Harpoon", "<leader><leader>t"),
+			dashboard.button("LDR g g", "  Git  ", "<leader>gg"),
 		}
 
 		dashboard.section.footer.val =

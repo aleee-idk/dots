@@ -7,7 +7,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 
 		-- Additional lua configuration, makes nvim stuff amazing!
-		{ "folke/neodev.nvim",      opts = {} },
+		{ "folke/neodev.nvim", opts = {} },
 	},
 
 	config = function()
@@ -42,6 +42,9 @@ return {
 			nmap("<leader>wl", function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end, "Workspace List Folders")
+
+			nmap("<leader>lj", vim.diagnostic.goto_next, "Go to next diagnostic")
+			nmap("<leader>lk", vim.diagnostic.goto_prev, "Go to prev diagnostic")
 
 			-- Create a command `:Format` local to the LSP buffer
 			vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)

@@ -9,12 +9,11 @@ return { -- Change colors.none if not using a transparent background
 			cmp = true,
 			indent_blankline = {
 				enabled = true,
-				scope_color = "lavender", -- catppuccin color (eg. `lavender`) Default: text
-				colored_indent_levels = true,
 			},
 		},
 		custom_highlights = function(colors)
 			return {
+				-- Fix colors for cmp
 				Pmenu = { bg = colors.none, blend = 0 },
 				FloatBorder = { bg = colors.none },
 				CmpItemMenu = { fg = colors.text, bg = colors.none },
