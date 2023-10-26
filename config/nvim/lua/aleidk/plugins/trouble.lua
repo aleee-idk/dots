@@ -2,6 +2,9 @@ return {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	cmd = { "TroubleToggle", "Trouble" },
+	keys = {
+		{ "<leader>fq", "<CMD>TroubleToggle<CR>", desc = "Toggle trouble" },
+	},
 	config = function()
 		require("trouble").setup({
 			mode = "document_diagnostics",
@@ -11,7 +14,5 @@ return {
 				open_tab = "t",
 			},
 		})
-
-		MAP("n", "<leader>fd", "<cmd>TroubleToggle<cr>", { silent = true, desc = "Search diagnostics" })
 	end,
 }

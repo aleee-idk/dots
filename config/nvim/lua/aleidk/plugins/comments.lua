@@ -3,7 +3,7 @@ return {
 		"echasnovski/mini.comment",
 		version = "*",
 		event = "VeryLazy",
-		depends = {
+		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-context" },
 		},
 		opts = {

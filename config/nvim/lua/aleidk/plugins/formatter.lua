@@ -7,12 +7,14 @@ return {
 		formatters_by_ft = {
 			-- Conform will run multiple formatters sequentially
 			lua = { "stylua" },
-			python = { "black" },
+			python = { "blue" },
 			-- Use a sub-list to run only the first available formatter
 			javascript = { { "prettierd", "prettier" } },
 			typescript = { { "prettierd", "prettier" } },
 			javascriptreact = { { "prettierd", "prettier" } },
 			typescriptreact = { { "prettierd", "prettier" } },
+			css = { { "prettierd", "prettier" } },
+			sh = { "shfmt" },
 			-- Use the "_" filetype to run formatters on filetypes that don't
 			-- have other formatters configured.
 			["_"] = { "trim_whitespace" },

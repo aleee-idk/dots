@@ -53,7 +53,6 @@ return {
 
 		-- Find files
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
-		vim.keymap.set("n", "<leader>fq", builtin.quickfix, { desc = "Find in quickfix" })
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 		vim.keymap.set("n", "<leader>fF", function()
 			builtin.find_files({ hidden = true, no_ignore = true })

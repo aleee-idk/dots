@@ -50,7 +50,6 @@ return {
 				{ mode = "n", keys = "<Leader>b", desc = "+Buffers" },
 				{ mode = "n", keys = "<Leader>bh", postkeys = "<Leader>b" },
 				{ mode = "n", keys = "<Leader>bl", postkeys = "<Leader>b" },
-				{ mode = "n", keys = "<Leader>c", desc = "+Comments" },
 				{ mode = "n", keys = "<Leader>f", desc = "+Find" },
 				{ mode = "n", keys = "<Leader>g", desc = "+Git" },
 				{ mode = "n", keys = "<Leader>l", desc = "+LSP" },
@@ -66,10 +65,8 @@ return {
 				config = {
 					width = "auto",
 				},
-
 				-- Delay before showing clue window
 				delay = 200,
-
 				-- Keys to scroll inside the clue window
 				scroll_down = "<C-d>",
 				scroll_up = "<C-u>",

@@ -8,6 +8,8 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			-- astro = { "eslint_d" },
+			python = { "pyright" },
+			sh = { "shellcheck" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {

@@ -90,7 +90,7 @@ return {
 				end
 			end
 
-			MAP("n", "<Leader>fq", toggle_qf, "Toggle quickfix")
+			MAP("n", "<Leader>fQ", toggle_qf, "Toggle quickfix")
 		end,
 	},
 }

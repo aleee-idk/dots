@@ -1,13 +1,12 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	event = "VeryLazy",
-	depends = {
+	lazy = false,
+	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
 	opts = function()
 		local icons = require("aleidk.constants").icons
-		-- local Util = require("lazyvim.util")
-		--
+
 		local function diff_source()
 			local gitsigns = vim.b.gitsigns_status_dict
 			if gitsigns then
@@ -69,7 +68,7 @@ return {
 					},
 				},
 				lualine_x = {
-					{ "require'lsp-status'.status()" },
+					{},
 				},
 				lualine_y = {
 					{ "location", padding = 0 },
