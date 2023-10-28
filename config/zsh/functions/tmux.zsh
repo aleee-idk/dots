@@ -27,3 +27,15 @@ tm() {
     fi
     session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0 --select-1) &&  tmux $change -t "$session" || echo "No sessions found."
 }
+
+ta() {
+    export START_DIRECTORY="$(z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+
+    if [[ -z START_DIRECTORY ]]; then
+        exit 0
+    fi
+
+    export SESSION_NAME="$(basename $START_DIRECTORY)"
+
+    tmuxp load $(fd -e yml . ~/.config/tmuxp | fzf)
+}

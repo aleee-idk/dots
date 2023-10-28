@@ -67,6 +67,7 @@ return {
 			disable_insert_on_commit = "auto",
 			kind = "replace",
 			disable_line_numbers = false,
+			console_timeout = 8000,
 			-- commit_editor = {
 			-- 	kind = "tab",
 			-- },

@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-echo -e "\n${BLD}${SUL}${GRN}Setting up tmux...${RST}\n"
-
-setup_zsh() {
-	symlink "$DOTS/config/tmux/tmux.conf" "$HOME"/.tmux.conf
-}
-
-setup_zsh

@@ -6,15 +6,14 @@ original_pwd="$(pwd)"
 cd "$DOTS/config" || exit
 
 readarray -t configs < <(
-    fd -d 1 \
-        --exclude "*.old" \
-        --exclude "create*" \
-        --exclude "tmux" \
-        --exclude "git"
+	fd -d 1 \
+		--exclude "*.old" \
+		--exclude "create*" \
+		--exclude "git"
 )
 
 for dot in "${configs[@]}"; do
-    symlink "$(pwd)/$dot" "${CONFIG}"
+	symlink "$(pwd)/$dot" "${CONFIG}"
 done
 
 cd "$original_pwd" || exit

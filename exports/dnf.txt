@@ -3,6 +3,7 @@ dnf-plugin-system-upgrade
 duf
 exa
 fd-find
+firefox-dev
 flatpak
 fzf
 gcc
@@ -13,6 +14,7 @@ lazygit
 neovim
 nodejs
 papirus-icon-theme
+python3-tmuxp
 remove-retired-packages
 ripgrep
 sd
@@ -21,4 +23,3 @@ tealdeer
 tmux
 tree-sitter-cli
 zsh
-firefox-dev
