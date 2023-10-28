@@ -12,7 +12,7 @@ alias \
     cpr='rsync  -za --partial -hh --info=progress2' \
     mvr='rsync  -za --remove-source-files --partial -hh --info=progress2' \
     sync='rsync -zau --delete --partial -hh --info=progress2' \
-    rm='trash -i' \
+    del='trash -i' \
     rmf='rm -rfI' \
     md='mkdir -pv' \
     ls='exa -lh --color=always --icons --git ' \
@@ -57,6 +57,10 @@ alias \
 # Misc
 alias \
     reload='exec $SHELL -l' \
+
+# Specific Mac overrides
+if [[ "$OSTYPE" != 'linux-gnu' ]]; then
+fi
 
 #--------------------------------------------------------------------#
 #                               Global                               #

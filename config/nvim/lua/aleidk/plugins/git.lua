@@ -67,9 +67,9 @@ return {
 			disable_insert_on_commit = "auto",
 			kind = "replace",
 			disable_line_numbers = false,
-			commit_editor = {
-				kind = "tab",
-			},
+			-- commit_editor = {
+			-- 	kind = "tab",
+			-- },
 		},
 		keys = {
 			{

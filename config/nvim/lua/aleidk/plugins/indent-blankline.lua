@@ -7,6 +7,7 @@ return {
 		-- char = "▏",
 		indent = {
 			char = "│",
+			tab_char = "│",
 		},
 		scope = {
 			enabled = true,
