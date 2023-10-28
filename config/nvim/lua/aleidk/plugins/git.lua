@@ -68,7 +68,7 @@ return {
 			kind = "replace",
 			disable_line_numbers = false,
 			commit_editor = {
-				kind = "replace",
+				kind = "tab",
 			},
 		},
 		keys = {
