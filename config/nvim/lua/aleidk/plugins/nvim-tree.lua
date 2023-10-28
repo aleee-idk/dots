@@ -13,7 +13,7 @@ return {
 		tree.setup({
 			hijack_unnamed_buffer_when_opening = true,
 			disable_netrw = true,
-			hijack_netrw = true,
+			hijack_netrw = false, -- handle by telescope browser
 			hijack_cursor = true, -- cursor at the start of filename
 			sync_root_with_cwd = true,
 			respect_buf_cwd = true,
@@ -31,7 +31,7 @@ return {
 			},
 			view = {
 				centralize_selection = true, -- center current file on enter
-				width = 30,              -- N° of columns or %
+				width = 30, -- N° of columns or %
 			},
 			on_attach = function(bufnr)
 				local function opts(desc)
@@ -79,6 +79,7 @@ return {
 		end
 
 		vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+		vim.api.nvim_create_user_command("Tree", "NvimTreeToggle", {})
 
 		-- bindings
 		-- disabled to discourage the use of this plugin without disabling it

@@ -4,6 +4,12 @@ return {
 	cmd = { "TroubleToggle", "Trouble" },
 	keys = {
 		{ "<leader>fq", "<CMD>TroubleToggle<CR>", desc = "Toggle trouble" },
+		{ "<leader>fd", "<CMD>TroubleToggle workspace_diagnostics<CR>", desc = "Find diagnostics" },
+		{
+			"<leader>fD",
+			"<CMD>TroubleToggle document_diagnostics<CR>",
+			desc = "Find diagnostics in workspace",
+		},
 	},
 	config = function()
 		require("trouble").setup({

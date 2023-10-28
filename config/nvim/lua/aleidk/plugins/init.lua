@@ -11,19 +11,6 @@ return {
 	},
 
 	{
-		"famiu/bufdelete.nvim",
-		config = nil,
-		keys = {
-			{
-				"<leader>bc",
-				function()
-					require("bufdelete").bufdelete(0, true)
-				end,
-				desc = "Close buffer",
-			},
-		},
-	},
-	{
 		"RRethy/vim-illuminate",
 		event = { "BufReadPost", "BufNewFile" },
 		opts = { delay = 200 },

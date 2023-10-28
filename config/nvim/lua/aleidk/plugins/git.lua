@@ -19,16 +19,16 @@ return {
 					vim.keymap.set(mode, "<leader>g" .. l, r, { buffer = buffer, desc = desc })
 				end
 
-        -- stylua: ignore start
-        map("n", "j", gs.next_hunk, "Next Hunk")
-        map("n", "k", gs.prev_hunk, "Prev Hunk")
-        map({ "n", "v" }, "s", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "r", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "u", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "R", gs.reset_buffer, "Reset Buffer")
-        map("n", "p", gs.preview_hunk, "Preview Hunk")
-        map("n", "l", function() gs.blame_line() end, "Blame Line")
-        map("n", "d", gs.diffthis, "Diff This")
+				-- stylua: ignore start
+				map("n", "j", gs.next_hunk, "Next Hunk")
+				map("n", "k", gs.prev_hunk, "Prev Hunk")
+				map({ "n", "v" }, "s", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+				map({ "n", "v" }, "r", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+				map("n", "u", gs.undo_stage_hunk, "Undo Stage Hunk")
+				map("n", "R", gs.reset_buffer, "Reset Buffer")
+				map("n", "p", gs.preview_hunk, "Preview Hunk")
+				map("n", "l", function() gs.blame_line() end, "Blame Line")
+				map("n", "d", gs.diffthis, "Diff This")
 			end,
 		},
 	},

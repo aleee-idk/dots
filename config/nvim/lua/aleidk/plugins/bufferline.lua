@@ -3,7 +3,8 @@ return {
 	event = "VeryLazy",
 	keys = {
 		{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-		{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+		{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Close non-pinned buffers" },
+		{ "<leader>bO", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close non focused buffers" },
 		{ "<leader>bh", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer to right" },
 		{ "<leader>bl", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer to left" },
 		{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
@@ -14,8 +15,8 @@ return {
 			"echasnovski/mini.bufremove",
 			-- stylua: ignore
 			keys = {
-				{ "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-				{ "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
+				{ "<leader>bc", function() require("mini.bufremove").delete(0, false) end, desc = "Close Buffer" },
+				{ "<leader>bC", function() require("mini.bufremove").delete(0, true) end,  desc = "Close Buffer (Force)" },
 			},
 		},
 	},

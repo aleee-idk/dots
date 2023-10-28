@@ -13,6 +13,9 @@ return {
 				return vim.fn.executable("make") == 1
 			end,
 		},
+		{
+			"nvim-telescope/telescope-file-browser.nvim",
+		},
 	},
 	config = function()
 		local actions = require("telescope.actions")
@@ -50,8 +53,15 @@ return {
 
 		-- Enable telescope fzf native, if installed
 		pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "file_browser")
 
 		-- Find files
+		vim.keymap.set(
+			"n",
+			"<leader>fe",
+			":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+			{ desc = "File Explorer" }
+		)
 		vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 		vim.keymap.set("n", "<leader>fF", function()
@@ -69,12 +79,13 @@ return {
 		vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
 
 		-- Diagnosticos
-		vim.keymap.set("n", "<leader>fd", function()
-			builtin.diagnostics({ bufnr = 0 })
-		end, { desc = "Find diagnostics" })
-		vim.keymap.set("n", "<leader>fD", function()
-			builtin.diagnostics({ bufnr = nil })
-		end, { desc = "Find diagnostics in workspace" })
-		vim.keymap.set("n", "<leader>fz", builtin.spell_suggest, { desc = "Find spell suggestion" })
+		-- Disabled, handle by trouble
+		-- vim.keymap.set("n", "<leader>fD", function()
+		-- 	builtin.diagnostics({ bufnr = 0 })
+		-- end, { desc = "Find diagnostics (Telescope)" })
+		-- vim.keymap.set("n", "<leader>fD", function()
+		-- 	builtin.diagnostics({ bufnr = nil })
+		-- end, { desc = "Find diagnostics in workspace (Telescope)" })
+		-- vim.keymap.set("n", "<leader>fz", builtin.spell_suggest, { desc = "Find spell suggestion" })
 	end,
 }

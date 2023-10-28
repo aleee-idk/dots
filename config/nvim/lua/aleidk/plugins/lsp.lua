@@ -36,11 +36,6 @@ return {
 
 			-- Lesser used LSP functionality
 			nmap("gD", vim.lsp.buf.declaration, "Goto Declaration")
-			nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Workspace Add Folder")
-			nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Workspace Remove Folder")
-			nmap("<leader>wl", function()
-				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end, "Workspace List Folders")
 
 			nmap("<leader>lj", vim.diagnostic.goto_next, "Go to next diagnostic")
 			nmap("<leader>lk", vim.diagnostic.goto_prev, "Go to prev diagnostic")
@@ -52,6 +47,7 @@ return {
 		end
 
 		-- Enable the following language servers
+		-- To see options and cofigurations: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 		local servers = {
 			bashls = {},
 			cssls = {},
@@ -70,10 +66,22 @@ return {
 			},
 			yamlls = {},
 			lua_ls = {
-				settigns = {
+				settings = {
 					Lua = {
-						workspace = { checkThirdParty = false },
-						telemetry = { enable = false },
+						runtime = {
+							-- Tell the language server which version of Lua you're using
+							-- (most likely LuaJIT in the case of Neovim)
+							version = "LuaJIT",
+						},
+						-- Make the server aware of Neovim runtime files
+						workspace = {
+							checkThirdParty = false,
+							library = {
+								vim.env.VIMRUNTIME,
+								-- "${3rd}/luv/library"
+								-- "${3rd}/busted/library",
+							},
+						},
 					},
 				},
 			},
@@ -128,5 +136,12 @@ return {
 			-- },
 			severity_sort = true,
 		})
+
+		-- Customize gutter icons
+		local signs = require("aleidk.constants").icons.diagnostics
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+		end
 	end,
 }
