@@ -30,6 +30,9 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 vim.keymap.set("n", "J", "mzJ`z", default("Keep cursor in column while joining lines"))
 
+vim.keymap.set("n", "|", ":vs<CR>", default("Open vsplit"))
+vim.keymap.set("n", "°", ":sp<CR>", default("Open split"))
+
 vim.keymap.set("n", "<C-d>", "<C-d>zz", default("Keep cursor centered while junping"))
 vim.keymap.set("n", "<C-u>", "<C-u>zz", default("Keep cursor centered while junping"))
 

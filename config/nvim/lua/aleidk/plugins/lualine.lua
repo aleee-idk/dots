@@ -81,7 +81,18 @@ return {
 				},
 				lualine_z = {},
 			},
-			extensions = { "neo-tree", "lazy" },
+			extensions = {
+				"neo-tree",
+				"lazy",
+				"fugitive",
+				"fzf",
+				"man",
+				"mason",
+				"nvim-tree",
+				"quickfix",
+				"symbols-outline",
+				"trouble",
+			},
 		}
 	end,
 }

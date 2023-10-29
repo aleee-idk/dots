@@ -30,7 +30,10 @@ return {
 					require("mini.bufremove").delete(n, false)
 				end,
 				-- stylua: ignore
-				right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+				always_show_bufferline = false,
+				right_mouse_command = function(n)
+					require("mini.bufremove").delete(n, false)
+				end,
 				diagnostics = "nvim_lsp",
 				diagnostics_indicator = function(_, _, diag)
 					local icons = require("aleidk.constants").icons.diagnostics
