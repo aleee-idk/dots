@@ -10,6 +10,7 @@ return {
 		"petertriho/cmp-git",
 		"hrsh7th/cmp-cmdline",
 		"saadparwaiz1/cmp_luasnip",
+		"L3MON4D3/LuaSnip",
 	},
 	config = function()
 		vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
