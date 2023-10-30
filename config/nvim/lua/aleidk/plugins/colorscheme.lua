@@ -7,6 +7,12 @@ return { -- Change colors.none if not using a transparent background
 		transparent_background = false,
 		integrations = {
 			cmp = true,
+			notify = true,
+			harpoon = true,
+			mason = true,
+			neogit = true,
+			noice = true,
+			lsp_trouble = true,
 			indent_blankline = {
 				enabled = true,
 			},
@@ -17,6 +23,10 @@ return { -- Change colors.none if not using a transparent background
 				Pmenu = { bg = colors.none, blend = 0 },
 				FloatBorder = { bg = colors.none },
 				CmpItemMenu = { fg = colors.text, bg = colors.none },
+				-- dadbod-ui
+				NotificationInfo = { bg = colors.none, fg = colors.text },
+				NotificationWarning = { bg = colors.none, fg = colors.yellow },
+				NotificationError = { bg = colors.none, fg = colors.red },
 			}
 		end,
 	},

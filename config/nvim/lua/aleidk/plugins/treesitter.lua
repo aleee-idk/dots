@@ -22,6 +22,7 @@ return {
 				"python",
 				"regex",
 				"rust",
+				"sql",
 				"tsx",
 				"typescript",
 				"vim",

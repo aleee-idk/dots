@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
 	"hrsh7th/nvim-cmp",
 	version = false, -- last release is way too old
@@ -6,9 +7,11 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
+		"petertriho/cmp-git",
+		"hrsh7th/cmp-cmdline",
 		"saadparwaiz1/cmp_luasnip",
 	},
-	opts = function()
+	config = function()
 		vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 		local cmp = require("cmp")
 		local defaults = require("cmp.config.default")()
@@ -18,7 +21,7 @@ return {
 			-- fix colors for catppuccin colorscheme
 			winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 		}
-		return {
+		local opts = {
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
@@ -37,11 +40,12 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
 				["<BR>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-				["<S-CR>"] = cmp.mapping.confirm({
+				["<C-CR>"] = cmp.mapping.confirm({ select = false }), -- Confirm only if selected an item
+				["<CR>"] = cmp.mapping.confirm({
+					-- Auto confirms first item
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
-				}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				}),
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
@@ -70,5 +74,25 @@ return {
 			},
 			sorting = defaults.sorting,
 		}
+
+		cmp.setup(opts)
+
+		-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+		})
 	end,
 }
