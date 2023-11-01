@@ -53,16 +53,14 @@ plugins=(
     alias-finder
     bgnotify
     colored-man-pages
-    composer
     docker
     docker-compose
     fd
     fzf
-    git
-    laravel
+    # git # disabled because I only ocasionally use git from the terminal
     safe-paste # don't run code when pasting
     systemd
-    z
+    z # TODO: replace plugin with zoxide
     zsh-autocomplete
     zsh-autopair
     zsh-autosuggestions
