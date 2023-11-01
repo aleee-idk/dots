@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                      Music Streams                       │
+#  ╰──────────────────────────────────────────────────────────╯
+
+#   ────────────────────────────────────────────────────────────
+# Saved streams
+declare -A streams
+
+streams[lofi]="https://youtu.be/jfKfPfyJRdk"
+streams[nintendo]="https://www.youtube.com/c/Henriko/live"
+streams[synthwave]="https://www.youtube.com/live/4xDzrJKXOOY?si=3WUrIe4TWLO-fw9m"
+
+#  ────────────────────────────────────────────────────────────
+
+# play passed url if provided
+url="$1"
+shift
+
+# defaults to celluloid, fallback to mpv
+if command -v celluloid &>/dev/null; then
+	player="celluloid"
+else
+	player="mpv --no-video"
+fi
+
+if [[ -z "$url" ]]; then
+	url="$(printf "%s\n" "${!streams[@]}" | fzf)"
+	url="${streams[$url]}"
+fi
+
+$player "$url"

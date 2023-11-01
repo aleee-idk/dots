@@ -28,7 +28,7 @@ return {
 			-- left aligned fixed size box with left aligned text
 			MAP({ "n", "v" }, "gcb", cb.lcbox, "Create a comment box")
 			-- centered adapted box with centered text
-			MAP({ "n", "v" }, "gcl", cb.cline, "Create a comment line")
+			MAP({ "n", "v" }, "gll", cb.cline, "Create a comment line")
 		end,
 	},
 }
