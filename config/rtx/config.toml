@@ -1,6 +1,6 @@
 [tools]
 node = 'lts'
-# python = {version='3', virtualenv='.venv'}
+python = {version='3', virtualenv='.venv'}
 
 [settings]
 [alias.node]
