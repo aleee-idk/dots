@@ -20,9 +20,9 @@ shift
 
 # defaults to celluloid, fallback to mpv
 if command -v celluloid &>/dev/null; then
-	player="celluloid"
+	player="celluloid --mpv-profile=low-latency,music-stream"
 else
-	player="mpv --no-video"
+	player="mpv --player-operation-mode=pseudo-gui --profile=low-latency,music-stream"
 fi
 
 if [[ -z "$url" ]]; then
@@ -30,4 +30,4 @@ if [[ -z "$url" ]]; then
 	url="${streams[$url]}"
 fi
 
-$player "$url"
+$player "$url" &>/dev/null &
