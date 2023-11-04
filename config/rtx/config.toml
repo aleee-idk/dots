@@ -1,6 +1,7 @@
 [tools]
 node = 'lts'
-python = {version='3', virtualenv='.venv'}
+# python = {version='3', virtualenv='.venv'}
+python = {version='3'} # setting virtualenv adds a virtualenv in every directory
 
 [settings]
 [alias.node]
