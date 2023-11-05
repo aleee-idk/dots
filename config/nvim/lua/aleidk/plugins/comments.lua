@@ -31,4 +31,19 @@ return {
 			MAP({ "n", "v" }, "gll", cb.cline, "Create a comment line")
 		end,
 	},
+	{
+		"danymat/neogen",
+		config = { snippet_engine = "luasnip" },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		version = "*", -- stable releases
+		keys = {
+			{
+				"gcd",
+				function()
+					require("neogen").generate()
+				end,
+				desc = "Generate comment docstring",
+			},
+		},
+	},
 }
