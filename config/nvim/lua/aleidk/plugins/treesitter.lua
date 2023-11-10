@@ -93,6 +93,18 @@ return {
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 		-- Uncoment this line to disable auto folding on file open
-		-- vim.cmd("set nofoldenable")
+		vim.cmd("set nofoldenable")
+
+		-- TODO: remove this when blade treesitter is added to nvim-treesitter repo
+		-- Also remove the "config/nvim/after/queries/blade" folder.
+		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+		parser_config.blade = {
+			install_info = {
+				url = "https://github.com/EmranMR/tree-sitter-blade",
+				files = { "src/parser.c" },
+				branch = "main",
+			},
+			filetype = "blade",
+		}
 	end,
 }
