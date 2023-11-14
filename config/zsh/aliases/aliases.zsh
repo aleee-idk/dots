@@ -23,14 +23,8 @@ alias \
 # Search and Query Files
 alias grep="rg --sort path --context 3";
 
-# Pacman
-alias \
-    pkgu="paru -Syu --removemake --cleanafter --sudoloop --color always" \
-    pkgi="paru --skipreview --removemake --cleanafter --sudoloop --color always --needed" \
-    pkgr="paru -R" \
-    cleanup='sudo pacman -Rns $(pacman -Qtdq)' \
-    pkglast="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -25 | nl"
-
+# Quicly update Stuff
+alias vi-ssh="vi ~/.ssh/config"
 
 # Query Stuff
 alias \

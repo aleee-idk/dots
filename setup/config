@@ -8,8 +8,7 @@ cd "$DOTS/config" || exit
 readarray -t configs < <(
 	fd -d 1 \
 		--exclude "*.old" \
-		--exclude "create*" \
-		--exclude "git"
+		--exclude "create*"
 )
 
 for dot in "${configs[@]}"; do

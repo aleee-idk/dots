@@ -1,7 +1,0 @@
-# Package manager locks
-*.lock
-pnpm-lock.yaml
-
-# PHP Stuff
-vendor
-.php-cs-fixer.cache

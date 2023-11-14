@@ -3,8 +3,8 @@
 # Original script steal from (specific commit):
 # https://github.com/lime-desu/dootsfile/blob/58abca63dfd596d4812fcf95567cc3ad63ffbb6f/scripts/set-random-wallpaper.sh
 
-WALLPAPER_DIR=${HOME}/Drives/Stuff/Pictures/Waifus
-WALLPAPER_PREFIX="Fondos_PC.*"
+WALLPAPER_DIR="${HOME}/Drives/Stuff/Pictures/Wallpapers/Landscape/"
+WALLPAPER_PREFIX=""
 RANDOM_PICTURE=$(fd -apt f "$WALLPAPER_PREFIX" "$WALLPAPER_DIR" | shuf -n 1)
 CURRENT_DESKTOP="$(echo "$XDG_CURRENT_DESKTOP" | awk '{for (i=1;i<=NF;i++) { $i=toupper(substr($i,1,1)) tolower(substr($i,2)) }}1')"
 
