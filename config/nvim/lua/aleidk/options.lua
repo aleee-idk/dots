@@ -70,5 +70,6 @@ vim.filetype.add({
 	pattern = {
 		-- INFO: Match filenames like - ".env.example", ".env.local" and so on
 		["%.env%.[%w_.-]+"] = "dotenv",
+		[".*%.blade%.php"] = "blade",
 	},
 })

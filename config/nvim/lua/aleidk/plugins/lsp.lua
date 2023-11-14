@@ -22,6 +22,7 @@ return {
 
 			nmap("<leader>lr", vim.lsp.buf.rename, "Rename")
 			nmap("<leader>la", vim.lsp.buf.code_action, "Code Action")
+			nmap("<leader>ld", vim.lsp.buf.type_definition, "Go to type definition")
 			nmap("<leader>lf", function()
 				vim.lsp.buf.format()
 			end, "Format")
@@ -49,6 +50,7 @@ return {
 		-- Enable the following language servers
 		-- To see options and cofigurations: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 		local servers = {
+			astro = {},
 			bashls = {},
 			cssls = {},
 			dockerls = {},
