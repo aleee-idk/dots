@@ -27,7 +27,7 @@ return {
 				map("n", "u", gs.undo_stage_hunk, "Undo Stage Hunk")
 				map("n", "R", gs.reset_buffer, "Reset Buffer")
 				map("n", "p", gs.preview_hunk, "Preview Hunk")
-				map("n", "l", function() gs.blame_line() end, "Blame Line")
+				map("n", "l", function() gs.blame_line({full = true}) end, "Blame Line")
 				map("n", "d", gs.diffthis, "Diff This")
 			end,
 		},
@@ -38,9 +38,6 @@ return {
 	{
 		"tpope/vim-fugitive",
 		event = "VeryLazy",
-		keys = {
-			{ "<leader>gG", ":Git<CR>", desc = "Fugitive" },
-		},
 	},
 
 	{
@@ -50,7 +47,7 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		keys = {
-			{ "<leader>gL", ":LazyGit<CR>", desc = "Lazygit" },
+			{ "<leader>gG", ":LazyGit<CR>", desc = "Lazygit" },
 		},
 	},
 

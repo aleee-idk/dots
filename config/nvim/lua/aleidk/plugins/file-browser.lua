@@ -6,7 +6,10 @@ return {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		lazy = false,
+		keys = {
+			{ "<Leader>e", "<CMD>NvimTreeToggle<CR>", desc = "Open file explorer" },
+		},
+		cmd = { "NvimTreeToggle", "Tree" },
 		config = function()
 			local tree = require("nvim-tree")
 			local api = require("nvim-tree.api")
@@ -93,48 +96,5 @@ return {
 			-- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
 			-- vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { desc = "Toggle file tree", silent = true })
 		end,
-	},
-	{
-		"stevearc/oil.nvim",
-		opts = function()
-			local oil = require("oil")
-			return {
-				win_options = {
-					number = false,
-				},
-				delete_to_trash = true,
-				trash_command = "trash",
-				skip_confirm_for_simple_edits = false,
-				keymaps = {
-					["g?"] = "actions.show_help",
-					["<CR>"] = "actions.select",
-					["l"] = "actions.select",
-					["<C-CR>"] = "actions.open_external",
-					["<C-s>"] = function()
-						oil.select({ vertical = true })
-						vim.cmd.wincmd({ args = { "p" } })
-						oil.close()
-						vim.cmd.wincmd({ args = { "p" } })
-					end,
-					["<C-v>"] = "actions.select_split",
-					["<C-t>"] = "actions.select_tab",
-					["<C-p>"] = "actions.preview",
-					["<C-d>"] = "actions.preview_scroll_down",
-					["<C-u>"] = "actions.preview_scroll_up",
-					["<Esc>"] = "actions.close",
-					["<C-r>"] = "actions.refresh",
-					["y"] = "actions.copy_entry_path",
-					["h"] = "actions.parent",
-					["gs"] = "actions.change_sort",
-					["gx"] = "actions.open_external",
-					["g."] = "actions.toggle_hidden",
-				},
-			}
-		end,
-		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		keys = {
-			{ "<Leader>e", "<CMD>Oil<CR>", desc = "Open file explorer" },
-		},
 	},
 }

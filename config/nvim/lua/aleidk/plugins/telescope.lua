@@ -30,8 +30,8 @@ return {
 				layout_config = { vertical = { height = 0.99, mirror = true, prompt_position = "top" } },
 				mappings = {
 					i = {
-						["<c-u>"] = false,
-						["<c-d>"] = false,
+						["<c-u>"] = actions.preview_scrolling_up,
+						["<c-d>"] = actions.preview_scrolling_down,
 						["<C-j>"] = actions.move_selection_next,
 						["<C-k>"] = actions.move_selection_previous,
 						["<C-s>"] = actions.file_vsplit,
@@ -75,8 +75,12 @@ return {
 		-- Help
 		vim.keymap.set("n", "<leader>fc", builtin.command_history, { desc = "Find in commands history" })
 		vim.keymap.set("n", "<leader>fC", builtin.commands, { desc = "Find a command" })
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-		vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[F]ind [K]eymaps" })
+		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
+		vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
+
+		-- Git
+		vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Change branch" })
+		vim.keymap.set("n", "<leader>gL", builtin.git_bcommits, { desc = "Commits of buffer" })
 
 		-- Diagnosticos
 		-- Disabled, handle by trouble
