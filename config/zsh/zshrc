@@ -60,7 +60,7 @@ plugins=(
     # git # disabled because I only ocasionally use git from the terminal
     safe-paste # don't run code when pasting
     systemd
-    z # TODO: replace plugin with zoxide
+    # z # TODO: replace plugin with zoxide
     zsh-autocomplete
     zsh-autopair
     zsh-autosuggestions
@@ -110,3 +110,4 @@ fi
 eval "$(starship init zsh)"
 eval "$(rtx activate zsh)"
 # eval "$(zellij setup --generate-auto-start zsh)"
+eval "$(zoxide init zsh)"

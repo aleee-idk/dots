@@ -62,3 +62,5 @@ vim.keymap.set({ "n", "v" }, "<Leader>p", [["+p]], default("Paste from system cl
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", default("Move selection down"))
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", default("Move selection up"))
 vim.keymap.set("n", "<Leader>uI", fixIdentation, default("Fix identation"))
+
+vim.keymap.set("n", "<Leader>uh", ":nohl<CR>", default("Remove search highlight"))

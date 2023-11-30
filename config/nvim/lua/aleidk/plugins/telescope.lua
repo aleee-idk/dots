@@ -80,7 +80,7 @@ return {
 
 		-- Git
 		vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Change branch" })
-		vim.keymap.set("n", "<leader>gL", builtin.git_bcommits, { desc = "Commits of buffer" })
+		vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, { desc = "Commits of buffer" })
 
 		-- Diagnosticos
 		-- Disabled, handle by trouble

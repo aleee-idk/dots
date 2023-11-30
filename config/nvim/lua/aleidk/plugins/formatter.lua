@@ -15,6 +15,8 @@ return {
 			javascriptreact = { { "prettierd", "prettier" } },
 			typescriptreact = { { "prettierd", "prettier" } },
 			css = { { "prettierd", "prettier" } },
+			scss = { { "prettierd", "prettier" } },
+			html = { "prettierd" },
 			sh = { "shfmt" },
 			-- Use the "_" filetype to run formatters on filetypes that don't
 			-- have other formatters configured.

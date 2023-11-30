@@ -5,6 +5,7 @@ return {
 		{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
 		{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Close non-pinned buffers" },
 		{ "<leader>bO", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close non focused buffers" },
+		{ "<leader>bA", "<Cmd>bufdo bd<CR>", desc = "Close all buffers" },
 		{ "<leader>bh", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer to right" },
 		{ "<leader>bl", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer to left" },
 		{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },

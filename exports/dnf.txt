@@ -22,4 +22,5 @@ starship
 tealdeer
 tmux
 tree-sitter-cli
+zoxide
 zsh

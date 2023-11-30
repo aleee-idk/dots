@@ -66,12 +66,21 @@ return {
 							hint = icons.diagnostics.Hint,
 						},
 					},
+					{
+						-- Macro recording status
+						function()
+							return require("noice").api.status.mode.get()
+						end,
+						cond = function()
+							return package.loaded["noice"] and require("noice").api.status.mode.has()
+						end,
+					},
 				},
 				lualine_x = {
-					{},
+					{ "searchcount" },
 				},
 				lualine_y = {
-					{ "location", padding = 0 },
+					{ "location" },
 					{
 						"progress",
 						fmt = position_scrollbar,

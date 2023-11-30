@@ -38,6 +38,9 @@ return {
 	{
 		"tpope/vim-fugitive",
 		event = "VeryLazy",
+		keys = {
+			{ "<Leader>gL", ":Git log -p -- %<CR>", desc = "Log of open file" },
+		},
 	},
 
 	{
