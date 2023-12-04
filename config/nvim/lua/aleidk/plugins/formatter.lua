@@ -7,6 +7,7 @@ return {
 		formatters_by_ft = {
 			-- Conform will run multiple formatters sequentially
 			lua = { "stylua" },
+			blade = { "blade-formatter" },
 			python = { "blue" },
 			-- Use a sub-list to run only the first available formatter
 			json = { { "prettierd", "prettier" } },
