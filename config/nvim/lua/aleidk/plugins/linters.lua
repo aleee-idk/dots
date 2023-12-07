@@ -2,7 +2,12 @@ return {
 	"mfussenegger/nvim-lint",
 	event = "VeryLazy",
 	config = function()
-		require("lint").linters_by_ft = {
+		local lint = require("lint")
+
+		lint.linters.gitlint.stdin = true
+		lint.linters.gitlint.args = { "--msg-filename", "-" }
+
+		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
@@ -10,6 +15,8 @@ return {
 			-- astro = { "eslint_d" },
 			python = { "pyright" },
 			sh = { "shellcheck" },
+			NeogitCommitMessage = { "gitlint" },
+			gitcommit = { "gitlint" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
