@@ -5,7 +5,7 @@ return {
 		local lint = require("lint")
 
 		lint.linters.gitlint.stdin = true
-		lint.linters.gitlint.args = { "--msg-filename", "-" }
+		lint.linters.gitlint.args = { "--contrib", "contrib-title-conventional-commits", "--msg-filename", "-" }
 
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
