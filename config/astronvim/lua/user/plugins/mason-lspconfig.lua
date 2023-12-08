@@ -13,6 +13,7 @@ return {
 			"lua_ls",
 			"tsserver",
 			"yamlls",
+			"gitlint",
 		}
 		require("plugins.configs.mason-lspconfig")(plugin, opts)
 	end,

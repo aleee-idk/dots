@@ -59,8 +59,7 @@ return {
 			pyright = {},
 			rust_analyzer = {},
 			sqlls = {},
-			-- TODO: need latest version of mason-lspconfig
-			-- typos_lsp = {},
+			typos_lsp = {},
 			tsserver = {
 				init_options = {
 					preferences = {
