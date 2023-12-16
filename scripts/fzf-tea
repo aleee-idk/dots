@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │           Interactivie Issue management of tea           │
+#  ╰──────────────────────────────────────────────────────────╯
+
+#   ────────────────────────────────────────────────────────────
+
+tea_issue_cache="/tmp/tea-issue-cache"
+
+mkdir -p "$tea_issue_cache"
+
+# TODO: Add more keybindings to interact with issues
+tea i -o simple |
+	fzf \
+		--preview "[[ -e $tea_issue_cache/{1} ]] && cat $tea_issue_cache/{1} || tea issue --comments {1} | tee $tea_issue_cache/{1}" \
+		--bind "ctrl-r:execute-silent(rm -f $tea_issue_cache/{1})+refresh-preview" \
+		--bind "ctrl-o:execute-silent(tea open {1})"
+
+rm -rf "$tea_issue_cache"
