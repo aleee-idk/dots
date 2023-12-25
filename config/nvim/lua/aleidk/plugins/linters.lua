@@ -17,6 +17,7 @@ return {
 			sh = { "shellcheck" },
 			NeogitCommitMessage = { "gitlint" },
 			gitcommit = { "gitlint" },
+			markdown = { "markdownlint" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {

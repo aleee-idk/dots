@@ -7,6 +7,7 @@ return {
 			"stylua",
 			"blue",
 			"prettierd",
+			"markdownlint",
 		},
 	},
 }
