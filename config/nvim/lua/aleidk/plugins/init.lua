@@ -17,4 +17,12 @@ return {
 		version = "*",
 		event = "VeryLazy",
 	},
+	{
+		"uga-rosa/ccc.nvim",
+		event = "VeryLazy",
+		opts = {
+			auto_enable = true,
+			lsp = true,
+		},
+	},
 }
