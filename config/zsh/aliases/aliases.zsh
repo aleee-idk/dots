@@ -15,9 +15,9 @@ alias \
     del='trash -i' \
     rmf='rm -rfI' \
     md='mkdir -pv' \
-    ls='exa -lh --color=always --icons --git ' \
-    la='exa -alh --color=always --icons --git ' \
-    ld='exa -la --no-permissions --no-filesize --no-time --no-time --no-user' \
+    ls='eza -lh --color=always --icons --git ' \
+    la='eza -alh --color=always --icons --git ' \
+    ld='eza -la --no-permissions --no-filesize --no-time --no-time --no-user' \
     mkexec='chmod +x';
 
 # Search and Query Files
