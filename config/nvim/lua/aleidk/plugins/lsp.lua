@@ -59,7 +59,6 @@ return {
 			pyright = {},
 			rust_analyzer = {},
 			sqlls = {},
-			typos_lsp = {},
 			tsserver = {
 				init_options = {
 					preferences = {
