@@ -2,7 +2,7 @@
 node = 'lts'
 # python = {version='3', virtualenv='.venv'}
 python = {version='3'} # setting virtualenv adds a virtualenv in every directory
-tea = "latest"
+php = "8.2"
 
 [settings]
 [alias.node]
