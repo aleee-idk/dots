@@ -55,9 +55,6 @@ vim.keymap.set("n", "<leader>rr", ":%s/", default("Search and replace globally")
 vim.keymap.set("v", "<leader>r", ":s/", default("Search and replace in selection"))
 
 vim.keymap.set("v", "p", [["_dP]], default("Paste whitout lossing yanked text"))
-vim.keymap.set({ "n", "v" }, "<Leader>y", [["+y]], default("Yank to system clipboard"))
-vim.keymap.set({ "n", "v" }, "<Leader>Y", [["+Y]], default("Yank line to system clipboard"))
-vim.keymap.set({ "n", "v" }, "<Leader>p", [["+p]], default("Paste from system clipboard"))
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", default("Move selection down"))
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", default("Move selection up"))
