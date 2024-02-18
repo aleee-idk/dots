@@ -34,7 +34,7 @@ update_path "$HOME/.local/share/rtx/shims"
 
 . "$HOME/.cargo/env"
 
-if [[ "$DOTS/config/zsh/zprofile.local" -e ]]; then
+if [[ -e "$DOTS/config/zsh/zprofile.local" ]]; then
     source "$DOTS/config/zsh/zprofile.local"
 fi
 
