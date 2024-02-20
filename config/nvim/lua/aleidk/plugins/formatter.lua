@@ -19,6 +19,7 @@ return {
 			scss = { { "prettierd", "prettier" } },
 			html = { "prettierd" },
 			sh = { "shfmt" },
+			zsh = { "shfmt" },
 			markdown = { "markdownlint" },
 			-- Use the "_" filetype to run formatters on filetypes that don't
 			-- have other formatters configured.
