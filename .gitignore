@@ -13,4 +13,5 @@ config/spicetify/Backup
 # nixos/hardware-configuration.nix
 result
 config/ncspot/userstate.cbor
+config/zsh/zprofile.local
 config/spicetify/CustomApps/*

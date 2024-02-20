@@ -1,7 +1,7 @@
 bat
 dnf-plugin-system-upgrade
 duf
-exa
+eza
 fd-find
 firefox-dev
 flatpak
@@ -15,7 +15,6 @@ neovim
 nodejs
 papirus-icon-theme
 gitlint
-python3-tmuxp
 remove-retired-packages
 ripgrep
 sd
