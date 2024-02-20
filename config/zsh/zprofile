@@ -31,6 +31,7 @@ update_path "$HOME/bin"
 update_path "$NPM_PACKAGES/bin"
 update_path "$PNPM_HOME"
 update_path "$HOME/.local/share/rtx/shims"
+update_path "$HOME/.spicetify"
 
 . "$HOME/.cargo/env"
 

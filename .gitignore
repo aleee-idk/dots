@@ -14,3 +14,4 @@ config/spicetify/Backup
 result
 config/ncspot/userstate.cbor
 config/zsh/zprofile.local
+config/spicetify/CustomApps/*
