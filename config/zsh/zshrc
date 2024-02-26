@@ -1,31 +1,31 @@
-#/usr/share/fzf/shell/key-bindings.zsh/usr/share/fzf/shell/key-bindings.zsh Start mesuring bottlenecks
+# Start measuring bottlenecks
 if [[ "$ZPROF" = true ]]; then
-	zmodload zsh/zprof
+    zmodload zsh/zprof
 fi
 
 #--------------------------------------------------------------------#
 #                             ZSH Config                             #
 #--------------------------------------------------------------------#
 
-# set VIM keybindings
+# Set VIM keybindings
 bindkey -v
 export KEYTIMEOUT=1
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd V edit-command-line # edits files in vim, hit Shift+v in normal mode
+bindkey -M vicmd V edit-command-line # Edits files in vim, hit Shift+v in normal mode
 
 # Add vim text objects
 autoload -Uz select-bracketed select-quoted
 zle -N select-quoted
 zle -N select-bracketed
 for km in viopp visual; do
-  bindkey -M $km -- '-' vi-up-line-or-history
-  for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
-    bindkey -M $km $c select-quoted
-  done
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $km $c select-bracketed
-  done
+    bindkey -M $km -- '-' vi-up-line-or-history
+    for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+        bindkey -M $km $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $km $c select-bracketed
+    done
 done
 
 # History
@@ -41,7 +41,6 @@ setopt CDABLE_VARS
 setopt PUSHD_SILENT
 
 # Completion
-
 setopt AUTO_LIST # Automatically list choices on ambiguous completion.
 # setopt CORRECT              # Turn on spelling correction for command.
 setopt COMPLETE_IN_WORD # Complete from both ends of a word.
@@ -56,7 +55,7 @@ zstyle ':completion:*:warnings' format '%F{cyan}%BSorry, no matches for: %d%b%f'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' use-cache on
 
-# autocomplete: https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
+# Autocomplete: https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
 zstyle ':autocomplete:*' fzf-completion yes
 zstyle ':autocomplete:*' min-input 1
 zstyle ':autocomplete:*' widget-style menu-select # Tab select instead of autocomplete
@@ -87,25 +86,25 @@ setopt GLOB_DOTS
 #                            Start Stuff                             #
 #--------------------------------------------------------------------#
 
-# File directory that are needed to source
+# File directories that are needed to source
 files=(
-	# zsh
-	$DOTS/config/zsh/**/*.zsh
-	# fzf scripts that need to be sourced
-	$DOTS/scripts/fzf-flatpak
-	# fzf config file
-	$DOOTS/config/fzf/fzfrc
+    # zsh
+    $DOTS/config/zsh/**/*.zsh
+    # fzf scripts that need to be sourced
+    $DOTS/scripts/fzf-flatpak
+    # fzf config file
+    $DOOTS/config/fzf/fzfrc
 )
 
 for file in $files; do
-	if [[ -f $file ]]; then
-		emulate -L zsh
-		source $file
-	fi
+    if [[ -f $file ]]; then
+        emulate -L zsh
+        source $file
+    fi
 done
 
 if [[ "$ZPROF" = true ]]; then
-	zprof
+    zprof
 fi
 
 eval "$(starship init zsh)"
@@ -113,6 +112,6 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
-# Load syntax highlight at the end so other configuration can use it
+# Load syntax highlight at the end so other configurations can use it
 # Color scheme for syntax highlighting
 source ~/.config/zsh/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
