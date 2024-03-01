@@ -1,0 +1,117 @@
+# Start measuring bottlenecks
+if [[ "$ZPROF" = true ]]; then
+    zmodload zsh/zprof
+fi
+
+#--------------------------------------------------------------------#
+#                             ZSH Config                             #
+#--------------------------------------------------------------------#
+
+# Set VIM keybindings
+bindkey -v
+export KEYTIMEOUT=1
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd V edit-command-line # Edits files in vim, hit Shift+v in normal mode
+
+# Add vim text objects
+autoload -Uz select-bracketed select-quoted
+zle -N select-quoted
+zle -N select-bracketed
+for km in viopp visual; do
+    bindkey -M $km -- '-' vi-up-line-or-history
+    for c in {a,i}${(s..)^:-\'\"\`\|,./:;=+@}; do
+        bindkey -M $km $c select-quoted
+    done
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $km $c select-bracketed
+    done
+done
+
+# History
+export HISTFILE="$HOME/.zsh_history" # History filepath
+export HISTSIZE=10000                # Maximum events for internal history
+export SAVEHIST=10000                # Maximum events in history file
+setopt EXTENDED_HISTORY
+
+# Navigation
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt CDABLE_VARS
+setopt PUSHD_SILENT
+
+# Completion
+setopt AUTO_LIST # Automatically list choices on ambiguous completion.
+# setopt CORRECT              # Turn on spelling correction for command.
+setopt COMPLETE_IN_WORD # Complete from both ends of a word.
+setopt GLOB_COMPLETE    # Show autocompletion menu with globs
+setopt MENU_COMPLETE    # Automatically highlight first element of completion menu
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-$XDG_DATA_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath+=${XDG_CONFIG_HOME:-$DOTS/config}/zsh/completions
+
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%F{cyan}%BSorry, no matches for: %d%b%f'
+zstyle ':completion:*' rehash true
+zstyle ':completion:*' use-cache on
+
+# Autocomplete: https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:*' widget-style menu-select # Tab select instead of autocomplete
+
+setopt autocd beep extendedglob notify
+
+zstyle ':completion:*' group-name ''
+zstyle :compinstall filename '/home/aleidk/.zshrc'
+
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# FZF config
+source /usr/share/fzf/shell/key-bindings.zsh
+
+autoload -U compinit
+compinit
+
+setopt GLOB_DOTS
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#--------------------------------------------------------------------#
+#                            Start Stuff                             #
+#--------------------------------------------------------------------#
+
+# File directories that are needed to source
+files=(
+    # zsh
+    $XDG_CONFIG_HOME/zsh/**/*.zsh
+    # fzf scripts that need to be sourced
+    $XDG_CONFIG_HOME/fzf-flatpak
+    # fzf config file
+    $XDG_CONFIG_HOMES/fzf/fzfrc
+)
+
+for file in $files; do
+    if [[ -f $file ]]; then
+        emulate -L zsh
+        source $file
+    fi
+done
+
+if [[ "$ZPROF" = true ]]; then
+    zprof
+fi
+
+eval "$(starship init zsh)"
+# eval "$(zellij setup --generate-auto-start zsh)"
+eval "$(zoxide init zsh)"
+eval "$(mise activate zsh)"
+
+# Load syntax highlight at the end so other configurations can use it
+# Color scheme for syntax highlighting
+source ~/.config/zsh/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh

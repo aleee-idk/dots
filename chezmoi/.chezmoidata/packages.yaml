@@ -1,0 +1,38 @@
+packages:
+  cargo:
+    - mise
+    - yazi-fm
+  dnf:
+    copr:
+      - atim/lazygit
+      - atim/starship
+      - the4runner/firefox-dev
+    packages:
+      - bat
+      - dnf-plugin-system-upgrade
+      - duf
+      - eza
+      - fd-find
+      - firefox-dev
+      - flatpak
+      - fzf
+      - gcc
+      - gcc-c++
+      - git
+      - gitlint
+      - gnome-software
+      - lazygit
+      - neovim
+      - nodejs
+      - openssl
+      - openssl-devel
+      - papirus-icon-theme
+      - remove-retired-packages
+      - ripgrep
+      - sd
+      - starship
+      - tealdeer
+      - tmux
+      - tree-sitter-cli
+      - zoxide
+      - zsh
