@@ -11,6 +11,7 @@ return {
 			python = { "blue" },
 			-- Use a sub-list to run only the first available formatter
 			json = { { "prettierd", "prettier" } },
+			jsonc = { { "prettierd", "prettier" } },
 			javascript = { { "prettierd", "prettier" } },
 			typescript = { { "prettierd", "prettier" } },
 			javascriptreact = { { "prettierd", "prettier" } },
