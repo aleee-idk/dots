@@ -89,11 +89,11 @@ setopt GLOB_DOTS
 # File directories that are needed to source
 files=(
     # zsh
-    $XDG_CONFIG_HOME/zsh/**/*.zsh
+    $HOME/.config/zsh/**/*.zsh
     # fzf scripts that need to be sourced
-    $XDG_CONFIG_HOME/fzf-flatpak
+    # $HOME/scripts/fzf-flatpak
     # fzf config file
-    $XDG_CONFIG_HOMES/fzf/fzfrc
+    $HOMES/.config/fzf/fzfrc
 )
 
 for file in $files; do
