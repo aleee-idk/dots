@@ -8,3 +8,8 @@
     type = "file"
     url = "https://github.com/catppuccin/bat/raw/main/Catppuccin-macchiato.tmTheme"
     refreshPeriod = "168h"
+
+["Repos/Source/xdg-ninja"]
+    type = "git-repo"
+    url = "https://github.com/b3nj5m1n/xdg-ninja.git"
+    refreshPeriod = "168h"
