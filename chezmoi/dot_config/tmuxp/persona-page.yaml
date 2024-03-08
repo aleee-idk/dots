@@ -1,8 +1,0 @@
-session_name: persona-page
-windows:
-  layout: main-vertical
-  panes:
-    - shell_command:
-      - nvim
-      focus: true
-    - pnpm

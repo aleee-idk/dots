@@ -1,7 +1,0 @@
-session_name: shorthands
-windows:
-  - window_name: main
-    layout: main-vertical
-    panes:
-      - shell_command: vi
-      - shell_command: pnpm dev

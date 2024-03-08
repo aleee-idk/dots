@@ -5,3 +5,4 @@
 
 [data]
     osid = {{ $osid | quote }}
+    hasGui = {{ promptBoolOnce . "hasGui" "Does this machine needs gui configs/apps?" }}
