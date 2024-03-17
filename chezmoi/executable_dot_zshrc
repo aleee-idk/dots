@@ -47,7 +47,7 @@ setopt COMPLETE_IN_WORD # Complete from both ends of a word.
 setopt GLOB_COMPLETE    # Show autocompletion menu with globs
 setopt MENU_COMPLETE    # Automatically highlight first element of completion menu
 
-fpath+=${ZSH_CUSTOM:-${ZSH:-$XDG_DATA_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src
+# fpath+=${ZSH_CUSTOM:-${ZSH:-$XDG_DATA_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src
 fpath+=${XDG_CONFIG_HOME:-$DOTS/config}/zsh/completions
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'

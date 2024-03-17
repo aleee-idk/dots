@@ -6,7 +6,7 @@
 [".config/bat/themes/Catppuccin-macchiato.tmTheme"]
     # Run "bat cache --build" to make the theme available
     type = "file"
-    url = "https://github.com/catppuccin/bat/raw/main/Catppuccin-macchiato.tmTheme"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme"
     refreshPeriod = "168h"
 
 ["Repos/Source/xdg-ninja"]
