@@ -5,5 +5,5 @@
 Execute the following command:
 
 ```bash
-curl -L https://codeberg.org/aleidk/dots/raw/branch/main/setup.sh | bash
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply
 ```
