@@ -2,6 +2,7 @@ packages:
   cargo:
     - mise
     - yazi-fm
+    - rbw
   dnf:
     copr:
       - atim/lazygit

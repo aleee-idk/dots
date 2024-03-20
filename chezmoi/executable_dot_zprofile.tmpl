@@ -1,15 +1,16 @@
 #!/usr/bin/zsh
 
 update_path() {
-    export PATH="$PATH:$1"
+	export PATH="$PATH:$1"
 }
 
 # Set manually
-export DOTS="$HOME/Repos/Private/dots"
+export DOTS="$(dirname $(chezmoi source-path))"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export QT_STYLE_OVERRIDE=kvantum
 export MOZ_ENABLE_WAYLAND=1
+export OPENAI_API_KEY="{{ (rbwFields "OpenAI").api_key.value }}"
 
 # Dev Stuff
 export NPM_PACKAGES="$HOME/.npm-packages"
@@ -19,7 +20,7 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
 # command
-unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
+unset MANPATH # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 # PATH
@@ -34,11 +35,6 @@ update_path "$PNPM_HOME"
 update_path "$HOME/.local/share/rtx/shims"
 update_path "$HOME/.spicetify"
 
-
-if [[ -e "$DOTS/config/zsh/zprofile.local" ]]; then
-    source "$DOTS/config/zsh/zprofile.local"
-fi
-
 if [[ $OSTYPE =~ 'darwin' ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi

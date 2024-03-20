@@ -1,7 +1,10 @@
+{{- if eq .hasWOL true -}}
 #!/usr/bin/env bash
 
+set -e
+
 # run as sudo so it ask for the password here and not inside FZF
-echo -e "\n${BLD}${SUL}${GRN}Setting up wol...${RST}\n"
+sudo echo -e "\nSetting up wol...\n"
 
 interface="$(
 	nmcli --fields name --terse con show |
@@ -17,3 +20,4 @@ if [[ -z "$interface" ]]; then
 fi
 nmcli c modify "$interface" 802-3-ethernet.wake-on-lan magic
 nmcli c modify "$interface" 802-3-ethernet.auto-negotiate yes
+{{ end }}
