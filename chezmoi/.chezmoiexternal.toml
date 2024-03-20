@@ -1,0 +1,15 @@
+[".config/alacritty/themes/catppuccin/catppuccin-macchiato.toml"]
+    type = "file"
+    url = "https://github.com/catppuccin/alacritty/raw/main/catppuccin-macchiato.toml"
+    refreshPeriod = "168h"
+
+[".config/bat/themes/Catppuccin-macchiato.tmTheme"]
+    # Run "bat cache --build" to make the theme available
+    type = "file"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme"
+    refreshPeriod = "168h"
+
+["Repos/Source/xdg-ninja"]
+    type = "git-repo"
+    url = "https://github.com/b3nj5m1n/xdg-ninja.git"
+    refreshPeriod = "168h"
