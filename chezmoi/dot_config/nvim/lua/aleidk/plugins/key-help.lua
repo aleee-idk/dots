@@ -57,9 +57,10 @@ return {
 				{ mode = "n", keys = "<Leader>u", desc = "+UI & Config" },
 				{ mode = "n", keys = "<Leader>un", desc = "+Noice" },
 				{ mode = "n", keys = "<Leader>w", desc = "+Workspace" },
-				{ mode = "n", keys = "<Leader>p", desc = "+ChatGPT" },
-				{ mode = "v", keys = "<Leader>p", desc = "+ChatGPT" },
-				{ mode = "n", keys = "<Leader>p", desc = "+ChatGPT" },
+				{ mode = "n", keys = "<Leader>p", desc = "+Run stuff" },
+				{ mode = "n", keys = "<Leader>a", desc = "+ChatGPT" },
+				{ mode = "v", keys = "<Leader>a", desc = "+ChatGPT" },
+				{ mode = "n", keys = "<Leader>a", desc = "+ChatGPT" },
 			},
 
 			-- Clue window settings

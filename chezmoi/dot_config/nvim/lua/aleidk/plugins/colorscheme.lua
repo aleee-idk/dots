@@ -12,6 +12,7 @@ return { -- Change colors.none if not using a transparent background
 			mason = true,
 			neogit = true,
 			noice = true,
+			hop = true,
 			lsp_trouble = true,
 			indent_blankline = {
 				enabled = true,

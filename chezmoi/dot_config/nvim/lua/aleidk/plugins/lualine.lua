@@ -67,6 +67,9 @@ return {
 						},
 					},
 					{
+						"overseer",
+					},
+					{
 						-- Macro recording status
 						function()
 							return require("noice").api.status.mode.get()

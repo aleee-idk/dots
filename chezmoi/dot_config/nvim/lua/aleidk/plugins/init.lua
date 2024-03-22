@@ -1,7 +1,17 @@
 return {
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
-
+	{
+		"mbbill/undotree",
+		config = function()
+			vim.g.undotree_WindowLayout = 2
+			vim.g.undotree_ShortIndicators = 1
+			vim.g.undotree_SetFocusWhenToggle = 1
+		end,
+		keys = {
+			{ "<leader>fu", vim.cmd.UndotreeToggle, desc = "Undo tree" },
+		},
+	},
 	{
 		-- Highlight word under cursor
 		"RRethy/vim-illuminate",
