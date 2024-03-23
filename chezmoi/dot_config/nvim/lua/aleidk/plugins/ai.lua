@@ -1,6 +1,5 @@
 return {
 	"jackMort/ChatGPT.nvim",
-	event = "VeryLazy",
 	opts = {
 		api_key_cmd = nil,
 		yank_register = "+",

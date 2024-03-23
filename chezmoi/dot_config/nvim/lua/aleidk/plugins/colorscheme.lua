@@ -8,7 +8,7 @@ return { -- Change colors.none if not using a transparent background
 		integrations = {
 			cmp = true,
 			notify = true,
-			harpoon = true,
+			harpoon = false,
 			mason = true,
 			neogit = true,
 			noice = true,

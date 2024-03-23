@@ -1,6 +1,7 @@
 return {
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{
 		"mbbill/undotree",
 		config = function()
@@ -23,6 +24,7 @@ return {
 	},
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
+		-- Color Picker
 		"uga-rosa/ccc.nvim",
 		event = "VeryLazy",
 		opts = {

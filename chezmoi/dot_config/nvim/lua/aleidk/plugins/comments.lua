@@ -33,7 +33,7 @@ return {
 	},
 	{
 		"danymat/neogen",
-		config = { snippet_engine = "luasnip" },
+		opts = { snippet_engine = "luasnip" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		version = "*", -- stable releases
 		keys = {

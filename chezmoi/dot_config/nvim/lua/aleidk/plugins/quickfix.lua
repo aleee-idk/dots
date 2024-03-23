@@ -2,14 +2,7 @@ return {
 	{
 		"kevinhwang91/nvim-bqf",
 		event = "VeryLazy",
-		dependencies = {
-			{
-				"junegunn/fzf",
-				build = function()
-					vim.fn["fzf#install"]()
-				end,
-			},
-		},
+		dependencies = {},
 		config = function()
 			local fn = vim.fn
 
