@@ -46,7 +46,9 @@ return {
 				miniclue.gen_clues.windows(),
 				miniclue.gen_clues.z(),
 
-				{ mode = "n", keys = "<Leader><Leader>", desc = "+Harpoon" },
+				{ mode = "n", keys = "<Leader><Leader>", desc = "+Bookmarks" },
+				{ mode = "n", keys = "<Leader><Leader>n", postkeys = "<Leader><Leader>" },
+				{ mode = "n", keys = "<Leader><Leader>N", postkeys = "<Leader><Leader>" },
 				{ mode = "n", keys = "<Leader>b", desc = "+Buffers" },
 				{ mode = "n", keys = "<Leader>bh", postkeys = "<Leader>b" },
 				{ mode = "n", keys = "<Leader>bl", postkeys = "<Leader>b" },
