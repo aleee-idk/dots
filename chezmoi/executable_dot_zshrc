@@ -48,7 +48,8 @@ setopt GLOB_COMPLETE    # Show autocompletion menu with globs
 setopt MENU_COMPLETE    # Automatically highlight first element of completion menu
 
 # fpath+=${ZSH_CUSTOM:-${ZSH:-$XDG_DATA_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src
-fpath+=${XDG_CONFIG_HOME:-$DOTS/config}/zsh/completions
+fpath+=${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions
+autoload -Uz ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/*
 
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%F{cyan}%BSorry, no matches for: %d%b%f'
@@ -108,7 +109,6 @@ if [[ "$ZPROF" = true ]]; then
 fi
 
 eval "$(starship init zsh)"
-# eval "$(zellij setup --generate-auto-start zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
