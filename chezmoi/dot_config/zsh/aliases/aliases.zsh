@@ -36,6 +36,14 @@ alias \
 	du3='dust --reverse --min-size 1M --depth 3' \
 	cat='bat'
 
+alias \
+	dco='docker compose' \
+	dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.State}}\t{{.Status}}\t{{.RunningFor}}'"
+
+alias \
+	pco='podman compose' \
+	pps="podman ps --format 'table {{.ID}}\t{{.Names}}\t{{.State}}\t{{.Status}}\t{{.RunningFor}}'"
+
 # Misc
 alias \
 	reload='exec $SHELL -l'

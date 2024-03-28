@@ -22,7 +22,6 @@ return {
 			require("illuminate").configure(opts)
 		end,
 	},
-	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
 		-- Color Picker
 		"uga-rosa/ccc.nvim",

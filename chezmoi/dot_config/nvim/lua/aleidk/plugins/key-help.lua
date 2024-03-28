@@ -63,6 +63,7 @@ return {
 				{ mode = "n", keys = "<Leader>a", desc = "+ChatGPT" },
 				{ mode = "v", keys = "<Leader>a", desc = "+ChatGPT" },
 				{ mode = "n", keys = "<Leader>a", desc = "+ChatGPT" },
+				{ mode = "n", keys = "g?", desc = "+Print Debug" },
 			},
 
 			-- Clue window settings

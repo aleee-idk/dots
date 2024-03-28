@@ -32,17 +32,6 @@ return {
 			end,
 		},
 	},
-
-	-- Testing main Git plugin
-
-	{
-		"tpope/vim-fugitive",
-		event = "VeryLazy",
-		keys = {
-			{ "<Leader>gL", ":Git log -p -- %<CR>", desc = "Log of open file" },
-		},
-	},
-
 	{
 		"kdheepak/lazygit.nvim",
 		event = "VeryLazy",
@@ -53,7 +42,6 @@ return {
 			{ "<leader>gG", ":LazyGit<CR>", desc = "Lazygit" },
 		},
 	},
-
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
@@ -63,19 +51,45 @@ return {
 		},
 		config = true,
 		opts = {
-			disable_insert_on_commit = "auto",
-			kind = "replace",
 			disable_line_numbers = false,
 			console_timeout = 8000,
-			-- commit_editor = {
-			-- 	kind = "tab",
-			-- },
+			graph_style = "unicode",
+			kind = "tab",
+			ignored_settings = {
+				"NeogitPushPopup--force-with-lease",
+				"NeogitPushPopup--force",
+				"NeogitPullPopup--rebase",
+				"NeogitCommitPopup--allow-empty",
+				"NeogitCommitPopup--reuse-message",
+				"NeogitRevertPopup--no-edit",
+			},
 		},
 		keys = {
 			{
 				"<leader>gg",
 				function()
 					require("neogit").open()
+				end,
+				desc = "Neogit",
+			},
+			{
+				"<leader>gc",
+				function()
+					require("neogit").open({ "commit" })
+				end,
+				desc = "commit",
+			},
+			{
+				"<leader>gp",
+				function()
+					require("neogit").open({ "pull" })
+				end,
+				desc = "Neogit",
+			},
+			{
+				"<leader>gP",
+				function()
+					require("neogit").open({ "push" })
 				end,
 				desc = "Neogit",
 			},

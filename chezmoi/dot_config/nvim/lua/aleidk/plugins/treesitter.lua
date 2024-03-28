@@ -6,6 +6,7 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"windwp/nvim-ts-autotag",
 		"JoosepAlviste/nvim-ts-context-commentstring",
+		"nvim-treesitter/nvim-treesitter-context",
 	},
 	build = ":TSUpdate",
 	config = function()
@@ -35,12 +36,6 @@ return {
 			indent = { enable = true },
 			incremental_selection = {
 				enable = true,
-				keymaps = {
-					init_selection = "<c-space>",
-					node_incremental = "<c-space>",
-					scope_incremental = "<c-s>",
-					node_decremental = "<M-space>",
-				},
 			},
 			textobjects = {
 				select = {
