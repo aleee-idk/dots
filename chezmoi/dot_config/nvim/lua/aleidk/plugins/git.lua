@@ -26,7 +26,7 @@ return {
 				map({ "n", "v" }, "r", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
 				map("n", "u", gs.undo_stage_hunk, "Undo Stage Hunk")
 				map("n", "R", gs.reset_buffer, "Reset Buffer")
-				map("n", "p", gs.preview_hunk, "Preview Hunk")
+				map("n", "<TAB>", gs.preview_hunk, "Preview Hunk")
 				map("n", "l", function() gs.blame_line({full = true}) end, "Blame Line")
 				map("n", "d", gs.diffthis, "Diff This")
 			end,
@@ -77,21 +77,21 @@ return {
 				function()
 					require("neogit").open({ "commit" })
 				end,
-				desc = "commit",
+				desc = "Commit",
 			},
 			{
 				"<leader>gp",
 				function()
 					require("neogit").open({ "pull" })
 				end,
-				desc = "Neogit",
+				desc = "Pull",
 			},
 			{
 				"<leader>gP",
 				function()
 					require("neogit").open({ "push" })
 				end,
-				desc = "Neogit",
+				desc = "Push",
 			},
 		},
 	},
