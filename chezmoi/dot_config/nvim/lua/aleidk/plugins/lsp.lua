@@ -22,7 +22,8 @@ return {
 			end
 
 			nmap("<leader>lr", vim.lsp.buf.rename, "Rename")
-			nmap("<leader>la", vim.lsp.buf.code_action, "Code Action")
+			-- stylua: ignore
+			vim.keymap.set({ "n", "x", "v" }, "<leader>la", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code Action" })
 			nmap("<leader>ld", vim.lsp.buf.type_definition, "Go to type definition")
 			nmap("<leader>lf", function()
 				vim.lsp.buf.format()
@@ -61,13 +62,6 @@ return {
 			rust_analyzer = {},
 			sqlls = {},
 			nimlsp = {},
-			tsserver = {
-				init_options = {
-					preferences = {
-						disableSuggestions = true,
-					},
-				},
-			},
 			yamlls = {},
 			lua_ls = {
 				settings = {
