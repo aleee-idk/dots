@@ -6,25 +6,26 @@ return {
 		-- Formatters can be installed by mason
 		formatters_by_ft = {
 			-- Conform will run multiple formatters sequentially
-			lua = { "stylua" },
-			blade = { "blade-formatter" },
-			python = { "blue" },
 			-- Use a sub-list to run only the first available formatter
-			json = { { "prettierd", "prettier" } },
-			jsonc = { { "prettierd", "prettier" } },
-			javascript = { { "prettierd", "prettier" } },
-			typescript = { { "prettierd", "prettier" } },
-			javascriptreact = { { "prettierd", "prettier" } },
-			typescriptreact = { { "prettierd", "prettier" } },
-			css = { { "prettierd", "prettier" } },
-			scss = { { "prettierd", "prettier" } },
-			html = { "prettierd" },
-			sh = { "shfmt" },
-			zsh = { "shfmt" },
-			markdown = { "markdownlint" },
 			-- Use the "_" filetype to run formatters on filetypes that don't
 			-- have other formatters configured.
 			["_"] = { "trim_whitespace" },
+			blade = { "blade-formatter" },
+			css = { { "prettierd", "prettier" } },
+			html = { "prettierd" },
+			javascript = { { "prettierd", "prettier" } },
+			javascriptreact = { { "prettierd", "prettier" } },
+			json = { { "prettierd", "prettier" } },
+			jsonc = { { "prettierd", "prettier" } },
+			lua = { "stylua" },
+			markdown = { "markdownlint" },
+			nim = { "nimpretty" },
+			python = { "blue" },
+			scss = { { "prettierd", "prettier" } },
+			sh = { "shfmt" },
+			typescript = { { "prettierd", "prettier" } },
+			typescriptreact = { { "prettierd", "prettier" } },
+			zsh = { "shfmt" },
 		},
 		format_on_save = function(bufnr)
 			-- Disable with a global or buffer-local variable

@@ -5,12 +5,13 @@ return {
 	build = ":MasonUpdate",
 	opts = {
 		ensure_installed = {
+			"blue",
 			"eslint_d",
+			"markdownlint",
+			"nimlsp",
+			"prettierd",
 			"shellcheck",
 			"stylua",
-			"blue",
-			"prettierd",
-			"markdownlint",
 		},
 	},
 }

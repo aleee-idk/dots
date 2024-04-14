@@ -60,6 +60,7 @@ return {
 			pyright = {},
 			rust_analyzer = {},
 			sqlls = {},
+			nimlsp = {},
 			tsserver = {
 				init_options = {
 					preferences = {
