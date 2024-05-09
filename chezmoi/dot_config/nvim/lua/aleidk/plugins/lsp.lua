@@ -59,9 +59,28 @@ return {
 			emmet_ls = {},
 			html = {},
 			pyright = {},
-			rust_analyzer = {},
+			rust_analyzer = {
+				settings = {
+					["rust-analyzer"] = {
+						imports = {
+							granularity = {
+								group = "module",
+							},
+							prefix = "self",
+						},
+						cargo = {
+							buildScripts = {
+								enable = true,
+							},
+						},
+						procMacro = {
+							enable = true,
+						},
+					},
+				},
+			},
 			sqlls = {},
-			nimlsp = {},
+			nimls = {},
 			yamlls = {},
 			lua_ls = {
 				settings = {

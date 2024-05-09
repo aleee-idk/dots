@@ -28,6 +28,7 @@ return {
 			winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 		}
 		local opts = {
+			visible_docs = false,
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
@@ -43,6 +44,13 @@ return {
 				["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
+				["<C-o>"] = function()
+					if cmp.visible_docs() then
+						cmp.close_docs()
+					else
+						cmp.open_docs()
+					end
+				end,
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
 				["<BR>"] = cmp.mapping.abort(),

@@ -4,7 +4,7 @@ return { -- Change colors.none if not using a transparent background
 	lazy = false,
 	opts = {
 		flavour = "macchiato",
-		transparent_background = false,
+		transparent_background = true,
 		integrations = {
 			cmp = true,
 			notify = true,

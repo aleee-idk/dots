@@ -1,8 +1,9 @@
 packages:
   cargo:
+    - du-dust
     - mise
-    - yazi-fm
     - rbw
+    - yazi-fm
   dnf:
     copr:
       - atim/lazygit

@@ -18,7 +18,7 @@ return {
 
 		dashboard.section.buttons.val = {
 			dashboard.button("LDR f f", "  Find File  ", "<leader>ff"),
-			dashboard.button("LDR LDR t", "  Harpoon", "<leader><leader>t"),
+			dashboard.button("LDR LDR t", "  Bookmars", "<leader><leader>t"),
 			dashboard.button("LDR g g", "  Git  ", "<leader>gg"),
 		}
 

@@ -5,5 +5,5 @@
 Execute the following command:
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply git@codeberg.org:aleidk/dots.git
 ```
