@@ -27,9 +27,28 @@ zinit light Aloxaf/fzf-tab
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                    Oh My Zsh snippets                    │
 #  ╰──────────────────────────────────────────────────────────╯
+zinit ice as"completion"; zinit snippet "https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completion/_fd"
+
+# svn is deprecated, zinit is working in replacing in favor of git: https://github.com/zdharma-continuum/zinit/issues/504
+# In the meantime, this plugins will not work
+# zinit ice svn; zinit snippet OMZ::plugins/aliases
+# zinit ice svn; zinit snippet OMZ::plugins/rust
+
+zinit snippet OMZP::alias-finder
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::dnf
+zinit snippet OMZP::docker
+zinit snippet OMZP::docker-compose
+zinit snippet OMZP::gh
 zinit snippet OMZP::git
-zinit snippet OMZP::sudo
-zinit snippet OMZP::command-not-found
+zinit snippet OMZP::systemd
+
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                     Plugins options                      │
+#  ╰──────────────────────────────────────────────────────────╯
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                     Load completions                     │
