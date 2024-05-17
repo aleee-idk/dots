@@ -1,11 +1,54 @@
-# Start measuring bottlenecks
-if [[ "$ZPROF" = true ]]; then
-    zmodload zsh/zprof
-fi
 
-#--------------------------------------------------------------------#
-#                             ZSH Config                             #
-#--------------------------------------------------------------------#
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                        ZSH Config                        │
+#  ╰──────────────────────────────────────────────────────────╯
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                      Preoload stuff                      │
+#  ╰──────────────────────────────────────────────────────────╯
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
+
+# Source/Load zinit, installation is handle by chezmoi external script
+source "${ZINIT_HOME}/zinit.zsh"
+
+# source catppuccin theme for zsh-syntax-highlighting
+zinit snippet "https://raw.githubusercontent.com/catppuccin/zsh-syntax-highlighting/main/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh"
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                       ZSH plugins                        │
+#  ╰──────────────────────────────────────────────────────────╯
+
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                    Oh My Zsh snippets                    │
+#  ╰──────────────────────────────────────────────────────────╯
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                     Load completions                     │
+#  ╰──────────────────────────────────────────────────────────╯
+# Custom completions
+fpath+=${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions
+autoload -Uz ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/*
+
+autoload -Uz compinit && compinit
+zinit cdreplay -q
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                       Keybindings                        │
+#  ╰──────────────────────────────────────────────────────────╯
+bindkey -e
+bindkey '^f' auto-suggest-accept
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
 
 # Set VIM keybindings
 bindkey -v
@@ -28,90 +71,41 @@ for km in viopp visual; do
     done
 done
 
-# History
-export HISTFILE="$HOME/.zsh_history" # History filepath
-export HISTSIZE=10000                # Maximum events for internal history
-export SAVEHIST=10000                # Maximum events in history file
-setopt EXTENDED_HISTORY
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                         History                          │
+#  ╰──────────────────────────────────────────────────────────╯
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
-# Navigation
-setopt AUTO_CD
-setopt AUTO_PUSHD
-setopt CDABLE_VARS
-setopt PUSHD_SILENT
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                    Completion styling                    │
+#  ╰──────────────────────────────────────────────────────────╯
+# case insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Completion
-setopt AUTO_LIST # Automatically list choices on ambiguous completion.
-# setopt CORRECT              # Turn on spelling correction for command.
-setopt COMPLETE_IN_WORD # Complete from both ends of a word.
-setopt GLOB_COMPLETE    # Show autocompletion menu with globs
-setopt MENU_COMPLETE    # Automatically highlight first element of completion menu
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                    Source other files                    │
+#  ╰──────────────────────────────────────────────────────────╯
+source $HOME/.config/zsh/**/*.zsh
+source $HOME/.config/fzf/fzfrc
 
-# fpath+=${ZSH_CUSTOM:-${ZSH:-$XDG_DATA_HOME/oh-my-zsh}/custom}/plugins/zsh-completions/src
-fpath+=${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions
-autoload -Uz ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/completions/*
-
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%F{cyan}%BSorry, no matches for: %d%b%f'
-zstyle ':completion:*' rehash true
-zstyle ':completion:*' use-cache on
-
-# Autocomplete: https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
-zstyle ':autocomplete:*' fzf-completion yes
-zstyle ':autocomplete:*' min-input 1
-zstyle ':autocomplete:*' widget-style menu-select # Tab select instead of autocomplete
-
-setopt autocd beep extendedglob notify
-
-zstyle ':completion:*' group-name ''
-zstyle :compinstall filename '/home/aleidk/.zshrc'
-
-zmodload zsh/complist
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-
-# FZF config
-source /usr/share/fzf/shell/key-bindings.zsh
-
-autoload -U compinit
-compinit
-
-setopt GLOB_DOTS
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-#--------------------------------------------------------------------#
-#                            Start Stuff                             #
-#--------------------------------------------------------------------#
-
-# File directories that are needed to source
-files=(
-    # zsh
-    $HOME/.config/zsh/**/*.zsh
-    # fzf scripts that need to be sourced
-    # $HOME/scripts/fzf-flatpak
-    # fzf config file
-    $HOMES/.config/fzf/fzfrc
-)
-
-for file in $files; do
-    if [[ -f $file ]]; then
-        emulate -L zsh
-        source $file
-    fi
-done
-
-if [[ "$ZPROF" = true ]]; then
-    zprof
-fi
-
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                  Init external programs                  │
+#  ╰──────────────────────────────────────────────────────────╯
+source /usr/share/fzf/shell/key-bindings.zsh # change to the following line when <= v0.48
+# eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
-eval "$(mise activate zsh)"
-
-# Load syntax highlight at the end so other configurations can use it
-# Color scheme for syntax highlighting
-source ~/.config/zsh/themes/catppuccin_macchiato-zsh-syntax-highlighting.zsh
