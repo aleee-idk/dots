@@ -7,3 +7,4 @@
     osid = {{ $osid | quote }}
     hasGui = {{ promptBoolOnce . "hasGui" "Does this machine needs gui configs/apps?" }}
     hasWOL = {{ promptBoolOnce . "hasWOL" "Does this machine WOL?" }}
+    openAIKey = {{ promptStringOnce . "openAIKey" "Enter Open AI key for chatGPT integration (or leave blank)" }}

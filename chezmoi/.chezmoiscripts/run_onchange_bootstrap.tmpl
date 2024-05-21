@@ -35,9 +35,11 @@ echo -e "${C_DODGERBLUE1}Installing packages...${NO_FORMAT}"
 # ╰──────────────────────────────────────────────────────────╯
 
 if ! command -v cargo > /dev/null; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain stable
+  export PATH="$PATH:$HOME/.cargo/bin/"
 fi
 
+rustup update
 
 # ╭──────────────────────────────────────────────────────────╮
 # │                  Install Cargo Packages                  │

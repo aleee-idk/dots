@@ -10,7 +10,7 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 export QT_STYLE_OVERRIDE=kvantum
 export MOZ_ENABLE_WAYLAND=1
-export OPENAI_API_KEY="{{ (rbwFields "OpenAI").api_key.value }}"
+export OPENAI_API_KEY="{{ .openAIKey }}"
 
 # Dev Stuff
 export NPM_PACKAGES="$HOME/.npm-packages"

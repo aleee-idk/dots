@@ -4,6 +4,7 @@ packages:
     - mise
     - rbw
     - yazi-fm
+    - yazi-cli
   dnf:
     copr:
       - atim/lazygit
