@@ -34,10 +34,7 @@ echo -e "${C_DODGERBLUE1}Installing packages...${NO_FORMAT}"
 # │                       Install Rust                       │
 # ╰──────────────────────────────────────────────────────────╯
 
-if ! command -v cargo > /dev/null; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain stable
-  export PATH="$PATH:$HOME/.cargo/bin/"
-fi
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain stable
 
 rustup update
 
