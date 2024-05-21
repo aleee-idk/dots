@@ -2,8 +2,9 @@
 
 ## Installation
 
-Execute the following command:
+Please ensure the that git is installed and you have an ssh key registered,
+then execute the following command:
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply git@codeberg.org:aleidk/dots.git
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply aleee-idk/dots
 ```
