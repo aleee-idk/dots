@@ -115,11 +115,23 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+
+#  ╭──────────────────────────────────────────────────────────╮
+#  │                       ZSH Options                        │
+#  ╰──────────────────────────────────────────────────────────╯
+setopt EXTENDED_GLOB
+setopt DOT_GLOB
+setopt GLOB_DOTS
+
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                    Source other files                    │
 #  ╰──────────────────────────────────────────────────────────╯
-source $HOME/.config/zsh/**/*.zsh
 source $HOME/.config/fzf/fzfrc
+
+# this prevents errors and not loading some files
+for file in $HOME/.config/zsh/**/*.zsh; do
+    source $file
+done
 
 #  ╭──────────────────────────────────────────────────────────╮
 #  │                  Init external programs                  │

@@ -56,7 +56,6 @@ return {
 			graph_style = "unicode",
 			kind = "tab",
 			ignored_settings = {
-				"NeogitPushPopup--force-with-lease",
 				"NeogitPushPopup--force",
 				"NeogitPullPopup--rebase",
 				"NeogitCommitPopup--allow-empty",
