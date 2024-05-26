@@ -44,6 +44,8 @@ alias \
 	pco='podman compose' \
 	pps="podman ps --format 'table {{.ID}}\t{{.Names}}\t{{.State}}\t{{.Status}}\t{{.RunningFor}}'"
 
+alias tm="fzf-tmux-sessions"
+
 # Misc
 alias \
 	reload='exec $SHELL -l'
