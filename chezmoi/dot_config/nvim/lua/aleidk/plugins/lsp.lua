@@ -7,7 +7,7 @@ return {
 		{ "williamboman/mason.nvim" },
 		"williamboman/mason-lspconfig.nvim",
 		-- Additional lua configuration, makes nvim stuff amazing!
-		{ "folke/neodev.nvim",      opts = {} },
+		{ "folke/neodev.nvim", opts = {} },
 	},
 
 	config = function()
@@ -60,6 +60,17 @@ return {
 			html = {},
 			pyright = {},
 			phpactor = {},
+			gopls = {
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
+					},
+				},
+			},
 			rust_analyzer = {
 				settings = {
 					["rust-analyzer"] = {

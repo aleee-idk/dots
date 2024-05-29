@@ -28,6 +28,7 @@ zinit light Aloxaf/fzf-tab
 #  │                    Oh My Zsh snippets                    │
 #  ╰──────────────────────────────────────────────────────────╯
 zinit ice as"completion"; zinit snippet "https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completion/_fd"
+zinit ice as"completion"; zinit snippet OMZP::gh
 
 # svn is deprecated, zinit is working in replacing in favor of git: https://github.com/zdharma-continuum/zinit/issues/504
 # In the meantime, this plugins will not work
@@ -39,7 +40,6 @@ zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::dnf
 zinit snippet OMZP::docker
 zinit snippet OMZP::docker-compose
-zinit snippet OMZP::gh
 zinit snippet OMZP::git
 zinit snippet OMZP::systemd
 
