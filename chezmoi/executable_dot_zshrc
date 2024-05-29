@@ -140,3 +140,4 @@ source /usr/share/fzf/shell/key-bindings.zsh # change to the following line when
 # eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
