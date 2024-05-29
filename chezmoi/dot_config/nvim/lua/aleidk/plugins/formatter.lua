@@ -20,6 +20,7 @@ return {
 			lua = { "stylua" },
 			markdown = { "markdownlint" },
 			nim = { "nimpretty" },
+			php = { "pint" },
 			python = { "blue" },
 			scss = { { "prettierd", "prettier" } },
 			sh = { "shfmt" },

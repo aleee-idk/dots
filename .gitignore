@@ -15,3 +15,4 @@ result
 config/ncspot/userstate.cbor
 config/zsh/zprofile.local
 config/spicetify/CustomApps/*
+chezmoi/dot_config/zsh/aliases/work.zsh

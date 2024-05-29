@@ -2,14 +2,14 @@ return {
 	"akinsho/bufferline.nvim",
 	event = "VeryLazy",
 	keys = {
-		{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+		{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
 		{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Close non-pinned buffers" },
-		{ "<leader>bO", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close non focused buffers" },
-		{ "<leader>bA", "<Cmd>bufdo bd<CR>", desc = "Close all buffers" },
-		{ "<leader>bh", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer to right" },
-		{ "<leader>bl", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer to left" },
-		{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-		{ "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+		{ "<leader>bO", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Close non focused buffers" },
+		{ "<leader>bA", "<Cmd>bufdo bd<CR>",                       desc = "Close all buffers" },
+		{ "<leader>bh", "<Cmd>BufferLineMovePrev<CR>",             desc = "Move buffer to right" },
+		{ "<leader>bl", "<Cmd>BufferLineMoveNext<CR>",             desc = "Move buffer to left" },
+		{ "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+		{ "<S-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
 	},
 	dependencies = {
 		{
@@ -39,7 +39,7 @@ return {
 				diagnostics_indicator = function(_, _, diag)
 					local icons = require("aleidk.constants").icons.diagnostics
 					local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-						.. (diag.warning and icons.Warn .. diag.warning or "")
+							.. (diag.warning and icons.Warn .. diag.warning or "")
 					return vim.trim(ret)
 				end,
 				-- return false to exluce buffers
@@ -48,6 +48,11 @@ return {
 						return false
 					end
 					if vim.fn.bufname(buf_number) == "" then
+						return false
+					end
+
+					-- disable for dadbod query buffers
+					if string.find(vim.fn.bufname(buf_number), "db_ui") then
 						return false
 					end
 

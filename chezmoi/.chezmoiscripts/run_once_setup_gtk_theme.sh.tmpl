@@ -11,15 +11,9 @@ tmp_dir="$(mktemp -d)"
 
 cd "$tmp_dir"
 
-git clone --recurse-submodules git@github.com:catppuccin/gtk.git
-cd gtk
-python -m venv venv
+curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
 
-source venv/bin/activate
-
-pip install -r requirements.txt
-
-python install.py macchiato --link -a teal -d ~/.themes --tweaks normal
+python3 install.py macchiato teal
 
 rm -rf "$tmp_dir"
 {{ end }}
