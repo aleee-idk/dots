@@ -83,6 +83,7 @@ return {
 			sqlls = {},
 			nimls = {},
 			yamlls = {},
+			tsserver = {},
 			lua_ls = {
 				settings = {
 					Lua = {

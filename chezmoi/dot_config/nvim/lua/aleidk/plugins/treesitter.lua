@@ -26,6 +26,7 @@ return {
 				"rust",
 				"sql",
 				"tsx",
+				"javascript",
 				"typescript",
 				"vim",
 				"vimdoc",
