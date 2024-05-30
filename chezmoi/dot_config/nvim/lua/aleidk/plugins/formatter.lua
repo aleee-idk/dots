@@ -28,6 +28,7 @@ return {
 			typescriptreact = { { "prettierd", "prettier" } },
 			zsh = { "shfmt" },
 			go = { { "gofumpt", "goimports_reviser", "golines" } },
+			xml = { "lemminx" }
 		},
 		format_on_save = function(bufnr)
 			-- Disable with a global or buffer-local variable
