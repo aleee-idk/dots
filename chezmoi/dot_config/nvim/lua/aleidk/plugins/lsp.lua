@@ -7,7 +7,7 @@ return {
 		{ "williamboman/mason.nvim" },
 		"williamboman/mason-lspconfig.nvim",
 		-- Additional lua configuration, makes nvim stuff amazing!
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/neodev.nvim",      opts = {} },
 	},
 
 	config = function()
@@ -92,7 +92,6 @@ return {
 				},
 			},
 			sqlls = {},
-			nimls = {},
 			yamlls = {},
 			tsserver = {},
 			lua_ls = {

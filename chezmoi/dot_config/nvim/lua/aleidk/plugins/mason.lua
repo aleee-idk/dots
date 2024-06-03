@@ -12,6 +12,7 @@ return {
 			"prettierd",
 			"shellcheck",
 			"stylua",
+			"gofumpt", "golines", "goimports-reviser", "gopls"
 		},
 	},
 }
