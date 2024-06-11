@@ -93,7 +93,13 @@ return {
 			},
 			sqlls = {},
 			yamlls = {},
-			tsserver = {},
+			tsserver = {
+				init_options = {
+					preferences = {
+						disableSuggestions = true
+					}
+				}
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
