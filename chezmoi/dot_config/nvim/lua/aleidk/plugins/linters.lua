@@ -13,7 +13,7 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			-- astro = { "eslint_d" },
-			python = { "pyright" },
+			python = { "pylint" },
 			sh = { "shellcheck" },
 			NeogitCommitMessage = { "gitlint" },
 			gitcommit = { "gitlint" },

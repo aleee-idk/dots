@@ -6,6 +6,7 @@ return {
 	opts = {
 		ensure_installed = {
 			"blue",
+			"pylint",
 			"eslint_d",
 			"markdownlint",
 			"nimlsp",

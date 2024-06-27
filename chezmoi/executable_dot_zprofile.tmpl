@@ -16,6 +16,7 @@ export OPENAI_API_KEY="{{ .openAIKey }}"
 export NPM_PACKAGES="$HOME/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
 export PNPM_HOME="$HOME/.local/share/pnpm"
+export ESLINT_USE_FLAT_CONFIG=true
 . "$HOME/.cargo/env"
 
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
