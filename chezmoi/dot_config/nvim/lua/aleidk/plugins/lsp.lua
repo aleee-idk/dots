@@ -7,7 +7,7 @@ return {
 		{ "williamboman/mason.nvim" },
 		"williamboman/mason-lspconfig.nvim",
 		-- Additional lua configuration, makes nvim stuff amazing!
-		{ "folke/neodev.nvim",      opts = {} },
+		{ "folke/neodev.nvim", opts = {} },
 	},
 
 	config = function()
@@ -58,6 +58,7 @@ return {
 			dockerls = {},
 			emmet_ls = {},
 			html = {},
+			marksman = {},
 			pyright = {},
 			phpactor = {},
 			gopls = {
@@ -96,9 +97,9 @@ return {
 			tsserver = {
 				init_options = {
 					preferences = {
-						disableSuggestions = true
-					}
-				}
+						disableSuggestions = true,
+					},
+				},
 			},
 			lua_ls = {
 				settings = {
