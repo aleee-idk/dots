@@ -62,4 +62,7 @@ vim.keymap.set("n", "<Leader>uI", fixIndentation, default("Fix indentation"))
 
 vim.keymap.set("n", "<Leader>uh", ":nohl<CR>", default("Remove search highlight"))
 
-vim.keymap.set('t', '<ESC>', '<C-\\><C-n>', default("Exit insert mode on terminal"))
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>", default("Exit insert mode on terminal"))
+
+vim.keymap.set("n", "<leader>bc", "<Cmd>bd<CR>", default("Close buffer"))
+vim.keymap.set("n", "<leader>bA", "<Cmd>bufdo bd<CR>", default("Close all buffers"))

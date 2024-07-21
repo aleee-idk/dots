@@ -3,6 +3,7 @@ return {
 	lazy = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
+		"cbochs/grapple.nvim",
 	},
 	opts = function()
 		local icons = require("aleidk.constants").icons
@@ -49,6 +50,51 @@ return {
 				lualine_c = {
 					{ "branch", icon = icons.git.branch },
 					{
+						"overseer",
+					},
+					{
+						-- Macro recording status
+						function()
+							return require("noice").api.status.mode.get()
+						end,
+						cond = function()
+							return package.loaded["noice"] and require("noice").api.status.mode.has()
+						end,
+					},
+				},
+				lualine_x = {
+					{
+						function()
+							return require("grapple").statusline()
+						end,
+					},
+				},
+				lualine_y = {
+					{ "searchcount" },
+					{ "location" },
+					{
+						"progress",
+						fmt = position_scrollbar,
+						separator = " ",
+						padding = 0,
+					},
+				},
+				lualine_z = {},
+			},
+			winbar = {
+				lualine_b = {
+					{
+						"filename",
+						path = 1,
+						symbols = {
+							modified = " ●", -- Text to show when the buffer is modified
+							alternate_file = "#", -- Text to show to identify the alternate file
+							directory = "", -- Text to show when the buffer is a directory
+						},
+					},
+				},
+				lualine_y = {
+					{
 						"diff",
 						symbols = {
 							added = icons.git.added,
@@ -66,32 +112,40 @@ return {
 							hint = icons.diagnostics.Hint,
 						},
 					},
-					{
-						"overseer",
-					},
-					{
-						-- Macro recording status
-						function()
-							return require("noice").api.status.mode.get()
-						end,
-						cond = function()
-							return package.loaded["noice"] and require("noice").api.status.mode.has()
-						end,
-					},
 				},
-				lualine_x = {
-					{ "searchcount" },
+			},
+			inactive_winbar = {
+				lualine_b = {
+					{
+						"filename",
+						path = 1,
+						symbols = {
+							modified = " ●", -- Text to show when the buffer is modified
+							alternate_file = "#", -- Text to show to identify the alternate file
+							directory = "", -- Text to show when the buffer is a directory
+						},
+					},
 				},
 				lualine_y = {
-					{ "location" },
 					{
-						"progress",
-						fmt = position_scrollbar,
-						separator = " ",
-						padding = 0,
+						"diff",
+						symbols = {
+							added = icons.git.added,
+							modified = icons.git.modified,
+							removed = icons.git.removed,
+						},
+						source = diff_source,
+					},
+					{
+						"diagnostics",
+						symbols = {
+							error = icons.diagnostics.Error,
+							warn = icons.diagnostics.Warn,
+							info = icons.diagnostics.Info,
+							hint = icons.diagnostics.Hint,
+						},
 					},
 				},
-				lualine_z = {},
 			},
 			extensions = {
 				"neo-tree",

@@ -3,7 +3,7 @@ return {
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons", lazy = true },
 	},
-	event = { "BufReadPost", "BufNewFile" },
+	lazy = false,
 	cmd = "Grapple",
 	keys = {
 		{ "<leader><leader>a", "<cmd>Grapple toggle<cr>", desc = "Toggle bookmark for current file" },
