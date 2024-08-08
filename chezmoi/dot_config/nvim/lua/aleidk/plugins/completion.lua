@@ -4,13 +4,14 @@ return {
 	version = false, -- last release is way too old
 	event = "InsertEnter",
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		"L3MON4D3/LuaSnip",
+		"davidsierradz/cmp-conventionalcommits",
 		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
 		"petertriho/cmp-git",
-		"hrsh7th/cmp-cmdline",
 		"saadparwaiz1/cmp_luasnip",
-		"L3MON4D3/LuaSnip",
 		"windwp/nvim-autopairs",
 	},
 	config = function()
@@ -62,6 +63,7 @@ return {
 				}),
 			}),
 			sources = cmp.config.sources({
+				{ name = "conventionalcommits" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "buffer" },
