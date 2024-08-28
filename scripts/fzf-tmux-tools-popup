@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+set -e
+
+declare -A tools
+
+tools[Lazygit]="lazygit"
+tools[Databases]="cd ~/.local/share/db_ui; nvim -c 'DBUI'"
+
+cli="$(printf "%s\n" "${!tools[@]}" | fzf)"
+cli="${tools[$cli]}"
+
+if [[ -z "$cli" ]]; then
+  exit
+fi
+
+eval "$cli"
