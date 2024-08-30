@@ -10,7 +10,7 @@ return {
 			options = {
 				custom_commentstring = function()
 					return require("ts_context_commentstring.internal").calculate_commentstring()
-						or vim.bo.commentstring
+							or vim.bo.commentstring
 				end,
 			},
 		},
@@ -28,7 +28,7 @@ return {
 			-- left aligned fixed size box with left aligned text
 			MAP({ "n", "v" }, "gcb", cb.lcbox, "Create a comment box")
 			-- centered adapted box with centered text
-			MAP({ "n", "v" }, "gll", cb.cline, "Create a comment line")
+			MAP({ "n", "v" }, "gcl", cb.llline, "Create a comment line")
 		end,
 	},
 	{
